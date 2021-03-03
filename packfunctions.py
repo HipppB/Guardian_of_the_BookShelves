@@ -1,4 +1,4 @@
-from init import *
+from init import lengthmenu, lengthspace
 def Clear():
     print("\n" * 40)
 
