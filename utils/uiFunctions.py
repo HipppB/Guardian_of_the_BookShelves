@@ -1,4 +1,4 @@
-from init import lengthmenu, lengthspace
+from utils.settings import lengthmenu, lengthspace
 def Clear():
     print("\n" * 40)
 
