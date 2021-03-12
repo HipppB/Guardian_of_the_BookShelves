@@ -34,8 +34,23 @@ def WritePage(theBook, thePage):
 
 WritePage(TheBook, TestPage)
 
+def listPages(book):
+    pages = {}
+    fileList = os.listdir('./books/' + book + '/')
+    for file in fileList:
+        page = file.split(".")
+        pages[page[1]] = pages[2]
+    return pages
+
 def LoadBook(bookname):
     if not os.path.exists("./books/" + bookname):
         return 404
     else:
-        
+        pages = listPages(bookname)
+        OpenBook = Book(bookname, pages)
+        return OpenBook
+
+def LoadPage(OpenBook, PageID):
+    filename = OpenBook.get_pagefile(PageID)
+    
+
