@@ -13,18 +13,26 @@ def mainMenu():
     emptyline()
     emptyline()
     line()
+    print("Here are your existing books: ")
+    print(books)
+    emptyline()
+    line()
     #La fonction Choice prend une liste des Choice et creer automatiquement l'interface dans la limite de 15 Choice. Les Choice doivent faire moins de 21 caractères
     listchoices = ["Create Book", "Edit Book", "List Books", "Quit Program"]
     NumChoice = Choice(listchoices) #Return the choice
     print("You choose the choice number", NumChoice)
     if NumChoice == 0:
         menuNewBook()
+    if NumChoice == 1:
+        menuEditBook()
     if NumChoice == 4:
         quit
 def menuNewBook():
     Clear()
     confirmation = False
     while not confirmation:
+        print("Existing books: ")
+        print(books)
         line()
         printTitle("Let's create a new Book !", True)
         emptyline()
@@ -35,6 +43,7 @@ def menuNewBook():
         
         if input("Confirm the name of your book Please: \n") == BookTitle:
             confirmation = True
+            books.append(BookTitle)
         else:
             print("The names does not match !")
     Clear()
@@ -52,9 +61,57 @@ def menuNewBook():
         
         if NumChoice != 404:
             confirmation = True
+        if NumChoice == 0:
+            createPage()
         else:
             print("Their was a problem !")
             
-print("bonjour")
+    Description= input("Enter a brief description of your story, that will be your sinopsis: ")
+
+    printSentence("Synopsis: \n" + Description)
+    emptyline()
+    line()
+
 Clear()
+
+books=['test']
+pages= ['testpage1']
+
+def menuEditBook():
+    line()
+    #charger book existant
+    #liste de livre
+    print(books)
+    book_to_edit= input("Which book would you like to edit ? : ")
+    if book_to_edit in books:
+        print("Edition menu of your book: " + book_to_edit)
+        listchoices = ["Create page", "Delete Page", "View Page", "Create Item", "See all Pages", "See all Links", "Quit Program"]
+        NumChoice = Choice(listchoices)
+
+        if NumChoice== 0:
+            createPage()
+            updated_pages_list=print(pages)
+            print(updated_pages_list)
+        if NumChoice==1:
+            print(pages)
+            del_Page= int(input("Which page would you like to delete ?"))
+            pages.pop(del_Page)
+            updated_pages_list=print(pages)
+            print(updated_pages_list)
+
+        if NumChoice==6:
+            quit
+
+
+    else:
+        print("book non existant")
+
+def menuNewpage():
+    titlePage= input("Give a title to your page: ")
+    sceneNumber= int(input("Enter the scene Number: "))
+        
+def createPage():
+    printSentence("let's create a page")
+
+
 mainMenu()
