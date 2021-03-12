@@ -13,6 +13,9 @@ class Book:
     
     def get_description(self):
         return self.description
+    
+    def get_book(self):
+        return self.get_title()
 
     
     def edit_title(self, newtitle):
@@ -24,7 +27,8 @@ class Page(Book):
         self.pagedescription = description
         self.pageid = 0
         self.choices = {0:{ "Name": "Quit", "Page": 0, "GiveItem": None, "TakeItem": None}}
-
+    def get_ID(self):
+        return self.pageid
     def get_pageTitle(self):
         return self.pagetitle
     

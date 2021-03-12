@@ -1,0 +1,20 @@
+{
+    "ID": 1,
+    "title": "Ceci est une page",
+    "Description": "Ceci est une tr\u00e8s tr\u00e8s longue descripion",
+    "Book": "Le livre test",
+    "choices": {
+        "0": {
+            "Name": "Quit",
+            "Page": 0,
+            "GiveItem": null,
+            "TakeItem": null
+        },
+        "1": {
+            "Name": "Take the Sword",
+            "Page": 1,
+            "GiveItem": "Sword",
+            "TakeItem": null
+        }
+    }
+}
