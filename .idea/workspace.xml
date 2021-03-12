@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a01d1f55-c910-4880-95fa-538ee360fa5c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/books/book1_sharktooth/fonctions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/book1_sharktooth/scenes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/book1_sharktooth/text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/book1_sharktooth/history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/books/book1_sharktooth/history.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/book1_sharktooth/scene_0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/books/book1_sharktooth/scene_0.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/Book2/Player.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +54,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

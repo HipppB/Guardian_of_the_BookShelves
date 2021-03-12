@@ -1,0 +1,5 @@
+
+
+scenesVisited = []
+inventory = []
+
