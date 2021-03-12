@@ -13,7 +13,7 @@ class Book:
         return self.get_title()
     
     def get_pagefile(self, pageid):
-        filename = str(pageid) + "." + self.pages[pageid]
+        filename = str(pageid) + "." + self.pages[pageid] + ".json"
         return filename
 
     def edit_title(self, newtitle):
