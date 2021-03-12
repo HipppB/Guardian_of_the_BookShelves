@@ -30,6 +30,7 @@ def getPages(book):
 ###########################################################################################################################""
 
 def menuList():
+    Clear()
         #La fonction line creer une ligne de tableau
     line()
     #L'argument True centre le titre
@@ -48,18 +49,26 @@ def menuList():
     if NumChoice == 0:
         mainMenu()
     if NumChoice == 1:
-        bookChoice = input("What book do you want to see ?")
-        menuBookView(bookChoice)
+        while True:
+            bookChoice = input("What book do you want to see ?")
+            try:
+                menuBookView(bookChoice)
+                break
+            except:
+                print("Please input a valid Name")
+
     if NumChoice == 2:
         quit
 
 ###########################################################################################################################""
 
 def menuBookView(book):
+    pages = getPages(book)
+    Clear()
     line()
     printTitle(("Here are the pages of " + book + " : "), centered = True)
     emptyline()
-    for f in getPages(book):
+    for f in pages:
         printSentence(f)
     emptyline()
     line()
@@ -68,15 +77,30 @@ def menuBookView(book):
     print("You choose the choice number", NumChoice)
     if NumChoice == 0:
         menuList()
+    if NumChoice == 1:
+        pageChoice = input("what page do you want to see ? : ")
+        print(type(pageChoice))
+        menuPageView(book, pageChoice) #change this to the page view 
     if NumChoice == 2:
-        menuList() #change this to the page view 
-    if NumChoice == 4:
         quit
+
+###########################################################################################################################""
+
+def menuPageView(book, page):
+    Clear()
+    Page = json.load(open(os.path.join(get_project_root(), 'books', book, 'Pages', page)))
+    line()
+    printTitle((book + " -- " + Page["Name"] + " : "), centered = True)
+    emptyline()
+    printSentence(Page["Text"])
+    emptyline()
+    line()
 
 ###########################################################################################################################""
 
 
 def mainMenu():
+    Clear()
     #La fonction line creer une ligne de tableau
     line()
     #L'argument True centre le titre
