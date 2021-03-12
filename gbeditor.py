@@ -7,7 +7,7 @@ lengthmenu = 103
 lengthspace = lengthmenu - 2
 
 def get_project_root() -> Path:
-    return Path(__file__).parent.parent
+    return Path(__file__).parent
 
 def getBooks():
     bookList = os.listdir(os.path.join(get_project_root(), 'books'))
