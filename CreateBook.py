@@ -55,6 +55,6 @@ def menuNewBook():
         else:
             print("Their was a problem !")
             
-
+print("bonjour")
 Clear()
 mainMenu()
