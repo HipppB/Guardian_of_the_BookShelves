@@ -54,11 +54,9 @@ class Page(Book):
 
     def add_choice(self, name, page, GiveItem = None, TakeItem = None):
         try:
-
-            while lenght = 
             if len(name) > 21:
                 name = input("The choosen name for this choice is too long, please enter another one (Max lenght: 21) : ")
-            newChoiceID = len(get_choices(self, method="0"))
+            newChoiceID = len(list(self.choices.keys()))
             try:
                 page = int(page)
 
