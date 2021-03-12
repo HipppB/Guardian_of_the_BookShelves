@@ -98,7 +98,6 @@ def menuPageView(book, page):
 
 ###########################################################################################################################""
 
-
 def mainMenu():
     Clear()
     #La fonction line creer une ligne de tableau
