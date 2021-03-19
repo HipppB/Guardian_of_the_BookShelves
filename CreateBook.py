@@ -82,22 +82,39 @@ def menuEditBook():
     #charger book existant
     #liste de livre
     print(books)
-    book_to_edit= input("Which book would you like to edit ? : ")
+    book_to_edit= input("Which book would you like to edit ? (Write its name) ")
     if book_to_edit in books:
         print("Edition menu of your book: " + book_to_edit)
-        listchoices = ["Create page", "Delete Page", "View Page", "Create Item", "See all Pages", "See all Links", "Quit Program"]
+        listchoices = ["Create page", "Delete Page", "View Page", "Create Item", "See all Pages", "Quit Program"]
         NumChoice = Choice(listchoices)
 
         if NumChoice== 0:
             createPage()
-            updated_pages_list=print(pages)
-            print(updated_pages_list)
+
         if NumChoice==1:
             print(pages)
-            del_Page= int(input("Which page would you like to delete ?"))
-            pages.pop(del_Page)
-            updated_pages_list=print(pages)
-            print(updated_pages_list)
+            del_Page= (input("Which page would you like to delete ? "))
+            if del_Page in pages:
+                if input("Confirm the name of your page please: \n") == del_Page:
+                    confirmation = True
+                    pages.remove(del_Page)
+                else:
+                    print("The name does not match !")
+            else:
+                print("This page does not exist ! ")
+                quit
+            
+            print("Here are the existing pages")
+            print(pages)
+        
+        if NumChoice==2:
+            #print list of pages
+            print(pages)
+            line()
+            #ask which page you want to view
+            pageview= input("Which page would you like to view ? ")
+            # if pageview in ages print content of the page else display page non existant
+
 
         if NumChoice==6:
             quit
@@ -112,6 +129,8 @@ def menuNewpage():
         
 def createPage():
     printSentence("let's create a page")
-
-
-mainMenu()
+    choices= input("What do you want to show the player as an action \n example: You arrived in front of three doors, which one would you like to open?")
+    
+def menuPrintPage:
+    print(pages)
+menuEditBook()
