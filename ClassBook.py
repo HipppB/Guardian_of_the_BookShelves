@@ -34,7 +34,7 @@ class Page(Book):
     def get_pagedescription(self):
         return self.pagedescription
     
-    def get_choices(self, method="0"):
+    def get_choices(self, method=0):
         # 0 -> Retourne la liste des ids des choix ex : [0,1,2]
         if method == 0:
             return list(self.choices.keys())
@@ -54,6 +54,7 @@ class Page(Book):
 
     def edit_pageTitle(self, newtitle):
         self.pagetitle = newtitle
+
 
     def add_choice(self, name, page, GiveItem = None, TakeItem = None):
         try:
