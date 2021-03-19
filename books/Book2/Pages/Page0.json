@@ -1,0 +1,9 @@
+{
+  "Name": "Intro",
+  "ID": 0,
+  "Choices": [
+    { "Name": "The 1st choice", "Page": 3, "Item": "sword" },
+    { "Name": "The 2nd choice", "Page": 2 }
+  ],
+  "Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget mauris eu dolor condimentum suscipit egestas quis lectus. Ut in odio ipsum. Curabitur ullamcorper malesuada nisl ac pellentesque. Fusce imperdiet leo dui, et rhoncus est sagittis id. Phasellus quis convallis est. Sed semper fringilla elit, at ultrices diam aliquam nec. Nam suscipit aliquam nisi quis convallis. Vestibulum a nibh arcu. Aenean at ex sit amet neque ornare porta. Etiam tincidunt est id fermentum pulvinar. Curabitur in lectus at ligula finibus maximus congue ut augue."
+}
