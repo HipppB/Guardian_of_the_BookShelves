@@ -1,37 +1,40 @@
 from packfunctions import line, printTitle, emptyline, printSentence, Choice, Clear
 
 class Book:
-    def __init__(self, title, description):
+    def __init__(self, title, pages):
         self.title = title
-        self.description = description
-        self.id = 1
-        self.page = {0 : "Page Principale"}
-        print("Le livre", title, "à été crée avec la description ", description, "son ID est ", id)
+        self.pages = pages
+        print("Le livre", title, "à été crée")
     
     def get_title(self):
         return self.title
+   
+    def get_book(self):
+        return self.get_title()
     
-    def get_description(self):
-        return self.description
+    def get_pagefile(self, pageid):
+        filename = str(pageid) + "." + self.pages[pageid] + ".json"
+        return filename
 
-    
     def edit_title(self, newtitle):
         self.title = newtitle
+    
 
 class Page(Book):
-    def __init__(self, title, description, pagenumber):
+    def __init__(self, id, title, description = "", choices = {0:{ "Name": "Quit", "Page": 0, "GiveItem": None, "TakeItem": None}}):
         self.pagetitle = title
+        self.pageid = id
         self.pagedescription = description
-        self.pageid = 0
-        self.choices = {0:{ "Name": "Quit", "Page": 0, "GiveItem": None, "TakeItem": None}}
-
+        self.choices = choices
+    def get_ID(self):
+        return self.pageid
     def get_pageTitle(self):
         return self.pagetitle
     
     def get_pagedescription(self):
         return self.pagedescription
     
-    def get_choices(self, method="0"):
+    def get_choices(self, method=0):
         # 0 -> Retourne la liste des ids des choix ex : [0,1,2]
         if method == 0:
             return list(self.choices.keys())
@@ -51,6 +54,7 @@ class Page(Book):
 
     def edit_pageTitle(self, newtitle):
         self.pagetitle = newtitle
+
 
     def add_choice(self, name, page, GiveItem = None, TakeItem = None):
         try:
