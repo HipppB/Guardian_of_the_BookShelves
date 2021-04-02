@@ -23,7 +23,7 @@ def FormatPage(thePage):
 TheBook = "TestBook"
 TestPage = {"ID": 1, "title": "Ceci_est_une_page", "Description": "Ceci est une très très longue descripion", "Book":"Le livre test", "choices":{0:{ "Name": "Quit", "Page": 0, "GiveItem": None, "TakeItem": None}, 1:{ "Name": "Take the Sword", "Page": 1, "GiveItem": "Sword", "TakeItem": None}} }
 
-def WritePage(theBook, thePage):
+def SavePage(theBook, thePage):
     path = "./books/" + theBook + "/" + str(thePage["ID"]) + "." + thePage["title"] + ".json"
     if not os.path.exists("./books/" + theBook):
         os.makedirs("./books/" + theBook)
@@ -32,7 +32,6 @@ def WritePage(theBook, thePage):
     print("done")
 
 
-WritePage(TheBook, TestPage)
 
 def listPages(book):
     pages = {}

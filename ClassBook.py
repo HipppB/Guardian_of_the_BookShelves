@@ -1,4 +1,4 @@
-from packfunctions import line, printTitle, emptyline, printSentence, Choice, Clear
+from gbeditor import line, printTitle, emptyline, printSentence, Choice, Clear
 
 class Book:
     def __init__(self, title, pages):

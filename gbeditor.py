@@ -29,6 +29,7 @@ def getPages(book):
         pageString = (str(page["ID"]) + '. ' + page["Name"])
         pageList.append(pageString)
     return pageList 
+    # ["0. PageName", "1. PageName"]
 
 
 ###########################################################################################################################""
@@ -163,47 +164,6 @@ def menuNewBook():
             print("Their was a problem !")
           
 ###########################################################################################################################""
-  
-def Clear():
-    print("\n" * 40)
-
-def line():
-    print("#" * lengthmenu)
-
-def emptyline():
-    print("#" + " " * lengthspace + "#")
-
-def printSentence(sentence, centered = False):
-    words = sentence.split()
-    print("# ", end="")
-    totallength = 1
-    for word in words:
-        totallength += len(word) + 1
-        if totallength <= lengthspace:
-            print(word, end=" ")
-        else:
-            print(" " * (lengthspace - (totallength - len(word) - 1)) + "#", end="")
-            print("\n# ", end="")
-            print(word, end=" ")
-            totallength = len(word) + 2
-    print(" " * (lengthspace - (totallength)) + "#")
-def printTitle(sentence, centered = False):
-    length = len(sentence) + 2
-    if centered == False:
-        print("# " + sentence + " " * (lengthspace - length) +" #")
-    else:
-        if length % 2 != 0:
-            print("#" + " " * int((lengthspace - length)/2), sentence, " " * int((lengthspace - length)/2) + "#")
-        else:
-            print("#" + " " * int((lengthspace - length)/2), sentence, " " * int((lengthspace + 1 - length)/2) + "#")
-
-def inputtexte(TextBefore = ""):
-    print("# ", end="")
-    if TextBefore != "":
-        print(TextBefore, end=" ")
-    question = input()
-    line()
-    return question
 
 def Choice(listeChoice):
     NbDeChoice = len(listeChoice)
@@ -260,3 +220,48 @@ def Choice(listeChoice):
         except:
            printSentence("You must input an integer !")
     return choice
+
+
+###########################################################################################################################""
+
+def Clear():
+    print("\n" * 40)
+
+def line():
+    print("#" * lengthmenu)
+
+def emptyline():
+    print("#" + " " * lengthspace + "#")
+
+def printSentence(sentence, centered = False):
+    words = sentence.split()
+    print("# ", end="")
+    totallength = 1
+    for word in words:
+        totallength += len(word) + 1
+        if totallength <= lengthspace:
+            print(word, end=" ")
+        else:
+            print(" " * (lengthspace - (totallength - len(word) - 1)) + "#", end="")
+            print("\n# ", end="")
+            print(word, end=" ")
+            totallength = len(word) + 2
+    print(" " * (lengthspace - (totallength)) + "#")
+def printTitle(sentence, centered = False):
+    length = len(sentence) + 2
+    if centered == False:
+        print("# " + sentence + " " * (lengthspace - length) +" #")
+    else:
+        if length % 2 != 0:
+            print("#" + " " * int((lengthspace - length)/2), sentence, " " * int((lengthspace - length)/2) + "#")
+        else:
+            print("#" + " " * int((lengthspace - length)/2), sentence, " " * int((lengthspace + 1 - length)/2) + "#")
+
+def inputtexte(TextBefore = ""):
+    print("# ", end="")
+    if TextBefore != "":
+        print(TextBefore, end=" ")
+    question = input()
+    line()
+    return question
+
