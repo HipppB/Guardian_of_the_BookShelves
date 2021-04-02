@@ -8,7 +8,7 @@
       "Name": "Back to page 0",
       "Page": 0,
       "GiveItem": ["Shield"],
-      "TakeItem": [end]
+      "TakeItem": ["end"]
     }
   }
 }
