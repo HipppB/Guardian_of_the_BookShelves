@@ -35,6 +35,3 @@ def menuPageView(book, page):
     emptyline()
     line()
 
-
-print(loadBook())
-print(loadPage('TheBook', 'Page0.json')['ID'])
