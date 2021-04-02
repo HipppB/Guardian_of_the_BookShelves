@@ -22,13 +22,14 @@ def getFiles(book):
     return fileList
 
 def getPages(book):
-    pageList = []
-    fileList = os.listdir(os.path.join(get_project_root(), 'books', book, 'Pages'))
+    pageView = []
+    pageDict = {}
+    fileList = os.listdir(os.path.join(get_project_root(), 'books', book))
     for p in fileList:
-        page = json.load(open(os.path.join(get_project_root(), 'books', book, 'Pages', p)))
+        page = json.load(open(os.path.join(get_project_root(), 'books', book, p)))
         pageString = (str(page["ID"]) + '. ' + page["Name"])
-        pageList.append(pageString)
-    return pageList 
+        pageView.append(pageString)
+    return pageView 
 
 
 ###########################################################################################################################""
@@ -55,11 +56,7 @@ def menuList():
     if NumChoice == 1:
         while True:
             bookChoice = input("What book do you want to see ?")
-            try:
-                menuBookView(bookChoice)
-                break
-            except:
-                print("Please input a valid Name")
+            menuBookView(bookChoice)
 
     if NumChoice == 2:
         quit
@@ -83,8 +80,9 @@ def menuBookView(book):
         menuList()
     if NumChoice == 1:
         pageChoice = input("what page do you want to see ? : ")
-        print(type(pageChoice))
-        menuPageView(book, pageChoice) #change this to the page view 
+        if type(pageChoice) =='integer':
+
+        menuPageView(book, pageChoice)
     if NumChoice == 2:
         quit
 
@@ -92,7 +90,7 @@ def menuBookView(book):
 
 def menuPageView(book, page):
     Clear()
-    Page = json.load(open(os.path.join(get_project_root(), 'books', book, 'Pages', page)))
+    Page = json.load(open(os.path.join(get_project_root(), 'books', book, page)))
     line()
     printTitle((book + " -- " + Page["Name"] + " : "), centered = True)
     emptyline()
