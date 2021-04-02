@@ -5,27 +5,6 @@ from pathlib import Path
 def get_project_root() -> Path:
   return Path(__file__).parent
 
-LoadPage = {
-  "ID": 1,
-  "title": "Main",
-  "Description": "string",
-  "Book": "Book1",
-  "choices": {
-    "0": {
-      "Name": "MainStreet",
-      "Page": 2,
-      "GiveItem": [],
-      "TakeItem": []
-    },
-    "1": {
-      "Name": "string",
-      "Page": 1,
-      "GiveItem": ["Sword"],
-      "TakeItem": []
-    }
-  }
-}
-
 def savePage(pageData):
 
   bookName = pageData.get("Book")
@@ -38,7 +17,6 @@ def savePage(pageData):
 
   file = open(filePath, "r+")
   file.truncate(0)
-  json.dump(LoadPage, file)
+  json.dump(pageData, file)
   file.close()
 
-savePage(LoadPage)
