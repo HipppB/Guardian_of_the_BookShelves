@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import json
+from Basics import *
 
 def get_project_root() -> Path:
     return Path(__file__).parent.parent
@@ -14,7 +15,7 @@ def loadBook():
 def listPages(book):
     pageList = []
     fileList = os.listdir(os.path.join(get_project_root(), 'books', book))
-    for p in filelist:
+    for p in fileList:
         page = json.load(open(os.path.join(get_project_root(), 'books', book, p)))
         pageString = (str(page["ID"]) + '. ' + page["Name"])
         pageList.append(pageString)
@@ -26,13 +27,13 @@ def loadPage(book, page):
     return Page
     # Dictionnary of the page in python format
 def menuPageView(book, page):
-    Clear()
+    clear()
     Page = json.load(open(os.path.join(get_project_root(), 'books', book, page)))
     line()
     printTitle((book + " -- " + Page["Name"] + " : "), centered = True)
-    emptyline()
+    emptyLine()
     printSentence(Page["Text"])
-    emptyline()
+    emptyLine()
     line()
 
 
