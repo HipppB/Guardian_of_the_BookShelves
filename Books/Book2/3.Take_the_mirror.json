@@ -1,0 +1,14 @@
+{
+  "ID": 3,
+  "title": "Take the mirror",
+  "Description": "You took a mirror and showed her her own reflection. Great idea! Now she wants to cut her head off!",
+  "Book": "The gardians of the Bookshelves' Adventure",
+  "choices": {
+    "0": {
+      "Name": "You defeated her!",
+      "Page": 0,
+      "GiveItem": ["book"],
+      "TakeItem": [end]
+    }
+  }
+}
