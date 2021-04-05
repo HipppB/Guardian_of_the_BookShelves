@@ -112,7 +112,7 @@ def menuEditBook():
 def menuNewpage():
     titlePage= input("Give a title to your page: ")
     sceneNumber= int(input("Enter the scene Number: "))
-    pages.add(titlePage)
+    pages.append(titlePage)
         
 def createPage():
     printSentence("let's create a page")
