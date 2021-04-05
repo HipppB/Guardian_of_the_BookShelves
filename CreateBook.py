@@ -92,20 +92,7 @@ def menuEditBook():
             createPage()
 
         if NumChoice==1:
-            print(pages)
-            del_Page= (input("Which page would you like to delete ? "))
-            if del_Page in pages:
-                if input("Confirm the name of your page please: \n") == del_Page:
-                    confirmation = True
-                    pages.remove(del_Page)
-                else:
-                    print("The name does not match !")
-            else:
-                print("This page does not exist ! ")
-                quit
-            
-            print("Here are the existing pages")
-            print(pages)
+            menuDeletePage()
         
         if NumChoice==2:
             #print list of pages
@@ -118,8 +105,6 @@ def menuEditBook():
 
         if NumChoice==6:
             quit
-
-
     else:
         print("book non existant")
 
@@ -129,8 +114,28 @@ def menuNewpage():
         
 def createPage():
     printSentence("let's create a page")
-    choices= input("What do you want to show the player as an action \n example: You arrived in front of three doors, which one would you like to open?")
-    
-def menuPrintPage:
+
+def menuDeletePage():
     print(pages)
+    while True:
+        try:
+            Pageid = int(input("Which page would you like to delete ? "))
+            answer= ""
+
+            while answer != "yes" and answer != "no":
+
+                answer= input("Are you sure you want to delete this page? (yes/no) \n")
+                if  answer == "yes":
+                    confirmation = True
+                    pages.pop(Pageid)
+                    print("Here's the updated list of pages")
+                    print(pages)
+                elif answer == "no":
+                    confirmation= False
+                return confirmation
+
+        except:
+            print("invalid number")
+
+
 menuEditBook()
