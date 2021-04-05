@@ -1,0 +1,14 @@
+{
+  "ID": 2,
+  "title": "Take the book",
+  "Description": "You found the book! However, it is not mention how you can beat her, nor send her back. Now she wants to kill YOU!",
+  "Book": "The gardians of the Bookshelves' Adventure",
+  "choices": {
+    "0": {
+      "Name": "Go back in time at the moment she got out of her book",
+      "Page": 0,
+      "GiveItem": ["mirror"],
+      "TakeItem": ["end"]
+    }
+  }
+}

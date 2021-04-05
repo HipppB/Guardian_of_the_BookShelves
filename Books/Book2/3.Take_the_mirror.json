@@ -8,7 +8,7 @@
       "Name": "You defeated her!",
       "Page": 0,
       "GiveItem": ["book"],
-      "TakeItem": [end]
+      "TakeItem": ["end"]
     }
   }
 }
