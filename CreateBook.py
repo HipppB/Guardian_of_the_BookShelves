@@ -108,12 +108,15 @@ def menuEditBook():
     else:
         print("book non existant")
 
+#pages is a list
 def menuNewpage():
     titlePage= input("Give a title to your page: ")
     sceneNumber= int(input("Enter the scene Number: "))
+    pages.add(titlePage)
         
 def createPage():
     printSentence("let's create a page")
+
 
 def menuDeletePage():
     print(pages)
