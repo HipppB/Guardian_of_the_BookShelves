@@ -11,11 +11,25 @@ LoadPage = {
   }
 }
 
+def resetChoiceID(PadeData):
+    choiceList = list(PadeData["numbers"])
+    for i in choiceList
+    list(x.keys()).index("c")
+
+
+
 def createChoice(PageData):
     newChoice = { "Name": "", "Page": 0, "GiveItem": [], "TakeItem": [] }
     numChoices = len(LoadPage["choices"])
     LoadPage["choices"][int(numChoices)] = newChoice
     return LoadPage
+
+
+def deleteChoice(PageData):
+    choiceToRemove = Basics.inputText("Choice to remove ? :")
+    del PageData["choices"][choiceToRemove]
+    return PageData
+
 
 def modifyChoice(PageData):
     choiceToChange = Basics.inputText("ChoiceNumberToEdit :")
@@ -30,7 +44,10 @@ def modifyChoice(PageData):
 
     return PageData
 
+
+
+#deleteChoice(LoadPage)
 #modifyChoice(LoadPage)
 #createChoice(LoadPage)
-#print(LoadPage)
+print(LoadPage)
 
