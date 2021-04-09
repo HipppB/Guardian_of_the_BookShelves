@@ -58,6 +58,8 @@ def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="
                     ForbidenCharacters = True
                     break
                 ForbidenCharacters = False
+            if len(Forbiden) == 0:
+                ForbidenCharacters = False
             
         if len(response) < maxlenght:
             Good = True
@@ -67,7 +69,7 @@ def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="
             responseVerification = input("# Please confirm : ")
             if responseVerification == response:
                 verification = False
-                printSentence("Verification réussie")
+                printSentence("Success")
             else:
                 printSentence("Vos deux entrées ne correspondent pas.")
     return response
@@ -82,6 +84,8 @@ def inputNumber(rangeNumber = None):
             if rangeNumber != None:
                 if number in rangeNumber:
                     return number
+                else:
+                    printSentence("This number is not valid.")
             else:
                 return number
         except:
@@ -134,5 +138,5 @@ def Choice(listeChoice):
             print()
             line()
     printChoices()
-    choice = inputNumber(range(0,NbDeChoice))
+    choice = inputNumber(rangeNumber = range(0,NbDeChoice))
     return choice
