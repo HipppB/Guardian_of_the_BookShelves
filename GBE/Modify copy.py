@@ -13,8 +13,8 @@ LoadPage = {
 
 def resetChoiceID(PadeData):
     choiceList = list(PadeData["numbers"])
-    for i in choiceList
-    list(x.keys()).index("c")
+    for i in choiceList:
+    #list(x.keys()).index("c")
 
 
 
