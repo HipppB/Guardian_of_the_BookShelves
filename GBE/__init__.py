@@ -1,1 +1,1 @@
-from .Load import *
+import GBE.Load
