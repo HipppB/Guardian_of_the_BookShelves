@@ -75,7 +75,8 @@ def menuNewBook():
 Clear()
 
 books=['test']
-pages= ['testpage1']
+
+pages={0: "test page", 2: "page 2"}
 
 def menuEditBook():
     line()
@@ -99,8 +100,13 @@ def menuEditBook():
             print(pages)
             line()
             #ask which page you want to view
-            pageview= input("Which page would you like to view ? ")
+            pageview= int(input("Which page would you like to view ? "))
+            
             # if pageview in ages print content of the page else display page non existant
+            if pageview in pages:
+                print(pageview)
+            else:
+                print("Page non existant")
 
 
         if NumChoice==6:
@@ -108,15 +114,24 @@ def menuEditBook():
     else:
         print("book non existant")
 
-#pages is a list
+#pages is a dictionary
 def menuNewpage():
     titlePage= input("Give a title to your page: ")
     sceneNumber= int(input("Enter the scene Number: "))
     pages.append(titlePage)
-        
-def createPage():
-    printSentence("let's create a page")
+    loadPage=createPage()
+    return loadPage
 
+     
+def createPage(book):
+    printSentence("let's create a page")
+    loadPage={}
+    loadPage["ID"]=pageNumber(book)
+    loadPage["title"]= input("enter title")
+    loadPage["description"]= input("enter a description")
+    loadPage["book"]= book
+    loadPage["choice"]={}
+    return loadPage
 
 def menuDeletePage():
     print(pages)
@@ -141,3 +156,4 @@ def menuDeletePage():
             print("invalid number")
 
 
+menuEditBook()
