@@ -13,14 +13,14 @@ def mainMenu():
     emptyline()
     emptyline()
     line()
-    print("Here are your existing books: ")
+    printSentence("Here are your existing books: ")
     print(books)
     emptyline()
     line()
     #La fonction Choice prend une liste des Choice et creer automatiquement l'interface dans la limite de 15 Choice. Les Choice doivent faire moins de 21 caractères
     listchoices = ["Create Book", "Edit Book", "List Books", "Quit Program"]
     NumChoice = Choice(listchoices) #Return the choice
-    print("You choose the choice number", NumChoice)
+    printSentence("You choose the choice number", NumChoice)
     if NumChoice == 0:
         menuNewBook()
     if NumChoice == 1:
@@ -31,7 +31,7 @@ def menuNewBook():
     Clear()
     confirmation = False
     while not confirmation:
-        print("Existing books: ")
+        printSentence("Existing books: ")
         print(books)
         line()
         printTitle("Let's create a new Book !", True)
@@ -45,7 +45,7 @@ def menuNewBook():
             confirmation = True
             books.append(BookTitle)
         else:
-            print("The names does not match !")
+            printSentence("The names does not match !")
     Clear()
     confirmation = False
     while not confirmation:
@@ -61,8 +61,8 @@ def menuNewBook():
         
         if NumChoice != 404:
             confirmation = True
-        if NumChoice == 0:
-            createPage()
+        #if NumChoice == 0:
+            #createPage()
         else:
             print("Their was a problem !")
             
@@ -88,8 +88,8 @@ def menuEditBook():
         listchoices = ["Create page", "Delete Page", "View Page", "Create Item", "See all Pages", "Quit Program"]
         NumChoice = Choice(listchoices)
 
-        if NumChoice== 0:
-            menuNewpage()
+        #if NumChoice== 0:
+            #menuNewpage()
 
         if NumChoice==1:
             menuDeletePage()
@@ -154,4 +154,4 @@ def menuDeletePage():
             print("invalid number")
 
 
-menuEditBook()
+mainMenu()
