@@ -1,3 +1,5 @@
+import Basics
+
 LoadPage = {
   "ID": 1,
   "title": "Main",
@@ -10,11 +12,25 @@ LoadPage = {
 }
 
 def createChoice(PageData):
-    blankChoice = { "Name": "", "Page": 0, "GiveItem": [], "TakeItem": [] }
+    newChoice = { "Name": "", "Page": 0, "GiveItem": [], "TakeItem": [] }
     numChoices = len(LoadPage["choices"])
-    LoadPage["choices"][int(numChoices)] = blankChoice
+    LoadPage["choices"][int(numChoices)] = newChoice
     return LoadPage
 
-createChoice(LoadPage)
-print(LoadPage)
+def modifyChoice(PageData):
+    choiceToChange = Basics.inputText("ChoiceNumberToEdit :")
+    choiceData = PageData["choices"][choiceToChange]
+
+    partToChange = Basics.inputText("Change Name, Page, GiveItem or TakeItem:")
+    valueToChange = Basics.inputText("Into what : ")
+    if partToChange == "Page":
+        valueToChange = int(valueToChange)
+
+    choiceData[partToChange] = valueToChange
+
+    return PageData
+
+#modifyChoice(LoadPage)
+#createChoice(LoadPage)
+#print(LoadPage)
 
