@@ -60,8 +60,6 @@ def menuListBook(EditMode = False):
             menuListBook(EditMode= True)
             
 
-    
-
 def menuCreateNewBook():
     Ba.clear()
     Ba.line()
@@ -81,25 +79,58 @@ def menuEditBook(LoadedBook):
     Ba.printTitle("Edition of the book " + LoadedBook , True)
     Ba.emptyLine()
     Ba.printSentence("From here you can Add a page, look to all the pages of the book, and even more ! Just enter what you want to do !")
-    Ba.printSentence("The Page 0 is the principal page of your book.")
+    Ba.printSentence("The Page 0 is the main page of your book.")
     Ba.emptyLine()
     Ba.line()
-    listchoices = ["Create page", "Delete Page", "View Page", "Create Item", "See all Pages", "See all Links", "Quit"]
+    listchoices = ["Create page", "Delete Page", "Modify Page", "See all Pages", "See all Links", "Quit"]
     NumChoice = Ba.Choice(listchoices)
     if NumChoice == 0:
         Modify.CreatePage(LoadedBook)
     elif NumChoice == 1:
-        pass
+        menuListPages(LoadedBook, Mode= "Delete")
     elif NumChoice == 2:
-        pass
+        menuListPages(LoadedBook, Mode= "Modify")
     elif NumChoice == 3:
-        pass
+        menuListPages(LoadedBook, Mode= "List")
     elif NumChoice == 4:
         pass
     elif NumChoice == 5:
         pass
-    elif NumChoice == 6:
-        pass
     else:
         print("Their was a problem !")
             
+# Sous menu Edit Book
+
+def menuListPages(LoadedBook, Mode= "List"):
+    Ba.clear()
+    Ba.line()
+    ListPage = Load.listPages(LoadedBook)
+    if Mode == "list":
+        Ba.printTitle("List of all pages" + LoadedBook , True)
+        Ba.emptyLine()
+        Ba.line()
+        for Page in ListPage[1]:
+            Ba.printSentence("- " + Page)
+
+    elif Mode == "Modify":
+        Ba.printTitle("Select a page to Modify" + LoadedBook , True)
+        Ba.emptyLine()
+        Ba.line()
+        i = 0
+        for Page in ListPage[1]:
+            Ba.printSentence(str(i) +". " + Page)
+            i += 1
+    elif Mode == "Delete":
+        Ba.printTitle("Select a page to delete" + LoadedBook , True)
+        Ba.printTitle("/!\\ Cannot be delete ! /!\\" + LoadedBook , True)
+        Ba.emptyLine()
+        Ba.line()
+        for Page in ListPage[1]:
+            Ba.printSentence("- " + Page)    
+    Ba.emptyLine()
+    Ba.line()
+
+
+
+def menuViewPage(LoadedBook):
+    pass

@@ -71,7 +71,7 @@ def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="
                 verification = False
                 printSentence("Success")
             else:
-                printSentence("Vos deux entrées ne correspondent pas.")
+                printSentence("The inputs don't match, please retry.")
     return response
 
 
