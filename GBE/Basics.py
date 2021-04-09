@@ -1,13 +1,19 @@
-from init import lengthmenu, lengthspace
-def Clear():
+lengthmenu = 103
+lengthspace = lengthmenu - 2
+
+#CLear terminal View
+def clear():
     print("\n" * 40)
 
+#Full Line
 def line():
     print("#" * lengthmenu)
 
-def emptyline():
+#Empty line
+def emptyLine():
     print("#" + " " * lengthspace + "#")
 
+#Print a sentence and go to line automaticly
 def printSentence(sentence, centered = False):
     words = sentence.split()
     print("# ", end="")
@@ -22,6 +28,8 @@ def printSentence(sentence, centered = False):
             print(word, end=" ")
             totallength = len(word) + 2
     print(" " * (lengthspace - (totallength)) + "#")
+
+# Print a title 
 def printTitle(sentence, centered = False):
     length = len(sentence) + 2
     if centered == False:
@@ -32,19 +40,62 @@ def printTitle(sentence, centered = False):
         else:
             print("#" + " " * int((lengthspace - length)/2), sentence, " " * int((lengthspace + 1 - length)/2) + "#")
 
-def inputtexte(TextBefore = ""):
-    print("# ", end="")
-    if TextBefore != "":
-        print(TextBefore, end=" ")
-    question = input()
-    line()
-    return question
+
+# Input Text with or without verification and lenght limitHello
+
+def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="text", Forbiden = []):
+    if typeInput == "title":
+        Forbiden = ["@", "'", ".", ":", "\\", "%", "/", "!", "," ]
+    Good = False
+    while (not Good ) or verification:
+        ForbidenCharacters = True
+        while ForbidenCharacters:
+            print("# ", end="")
+            response = input(textBefore + " ")
+            for caracter in Forbiden:
+                if caracter in response:
+                    printSentence("Caractère " + caracter + " interdit dans cette entrée")
+                    ForbidenCharacters = True
+                    break
+                ForbidenCharacters = False
+            
+        if len(response) < maxlenght:
+            Good = True
+        else:
+            print("# Incorrect Response, the max lenght is", maxlenght)
+        if verification and Good:
+            responseVerification = input("# Please confirm : ")
+            if responseVerification == response:
+                verification = False
+                printSentence("Verification réussie")
+            else:
+                printSentence("Vos deux entrées ne correspondent pas.")
+    return response
+
+
+# Input a Number in or not in a given range:
+
+def inputNumber(rangeNumber = None):
+    while True:
+        try:
+            number = int(inputText(textBefore= "Enter an integer :", verification = False))
+            if rangeNumber != None:
+                if number in rangeNumber:
+                    return number
+            else:
+                return number
+        except:
+            printSentence("Please enter a valid integer.")
+
+
+
+# Input a choice from a given list of choice :
 
 def Choice(listeChoice):
     NbDeChoice = len(listeChoice)
     Choice = listeChoice
     if NbDeChoice > 15:
-        print("Trop de Choice, maximum = 15")
+        print("Error -- Too muche Choices")
         return 400
     def printChoices(FirstLine = False):
         paternes = {1:(1,), 2:(2,), 3:(3,), 4:(4,), 5:(3,2), 6:(3,3), 7:(4,3), 8:(4,4), 9:(3,3,3), 10:(4,3,3), 11:(4,4,3), 12:(4,4,4), 13:(4,4,3,2), 14:(4,4,3,3), 15:(4,4,4,3)}
@@ -83,15 +134,5 @@ def Choice(listeChoice):
             print()
             line()
     printChoices()
-    while True:
-        try:
-            choice = int(inputtexte("Please enter the number of your choice : "))
-            if choice > (NbDeChoice - 1):
-                Clear()
-                printSentence("Invalid choice ! the valid choices are:")
-                printChoices(True)
-            else:
-                break
-        except:
-           printSentence("You must input an integer !")
+    choice = inputNumber(range(0,NbDeChoice))
     return choice
