@@ -5,6 +5,7 @@ from pathlib import Path
 def get_project_root() -> Path:
   return Path(__file__).parent.parent
 
+
 def savePage(pageData):
 
   bookName = pageData.get("Book")
@@ -15,7 +16,7 @@ def savePage(pageData):
 
   filePath = os.path.join(get_project_root(), 'Books', bookName, pageName )
 
-  file = open(filePath, "r+")
+  file = open(filePath, "w+")
   file.truncate(0)
   json.dump(pageData, file)
   file.close()
