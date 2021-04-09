@@ -104,6 +104,7 @@ def menuEditBook():
             
             # if pageview in ages print content of the page else display page non existant
             if pageview in pages:
+                pageview=pages[pageview]
                 print(pageview)
             else:
                 print("Page non existant")
@@ -116,9 +117,6 @@ def menuEditBook():
 
 #pages is a dictionary
 def menuNewpage():
-    titlePage= input("Give a title to your page: ")
-    sceneNumber= int(input("Enter the scene Number: "))
-    pages.append(titlePage)
     loadPage=createPage()
     return loadPage
 
