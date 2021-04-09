@@ -40,7 +40,5 @@ def loadPage(book, page):
     # Dictionnary of the page in python format
 
 def pageNumber(book):
-    num = 0
-    for i in listPages(book):
-        num += 1
+    num = len(listPages(book))
     return num
