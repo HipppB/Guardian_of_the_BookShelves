@@ -74,8 +74,7 @@ def menuNewBook():
 
 Clear()
 
-books=['test']
-
+books=['test', 'book2']
 pages={0: "test page", 2: "page 2"}
 
 def menuEditBook():
@@ -90,7 +89,7 @@ def menuEditBook():
         NumChoice = Choice(listchoices)
 
         if NumChoice== 0:
-            createPage()
+            menuNewpage()
 
         if NumChoice==1:
             menuDeletePage()
@@ -104,6 +103,7 @@ def menuEditBook():
             
             # if pageview in ages print content of the page else display page non existant
             if pageview in pages:
+                print(pages)
                 pageview=pages[pageview]
                 print(pageview)
             else:
@@ -116,15 +116,15 @@ def menuEditBook():
         print("book non existant")
 
 #pages is a dictionary
-def menuNewpage():
-    loadPage=createPage()
+def menuNewpage(book):
+    loadPage= createPage(book)
     return loadPage
 
      
 def createPage(book):
     printSentence("let's create a page")
     loadPage={}
-    loadPage["ID"]=pageNumber(book)
+    #loadPage["ID"]=pageNumber(book)
     loadPage["title"]= input("enter title")
     loadPage["description"]= input("enter a description")
     loadPage["book"]= book
