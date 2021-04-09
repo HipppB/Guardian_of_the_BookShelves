@@ -43,12 +43,22 @@ def printTitle(sentence, centered = False):
 
 # Input Text with or without verification and lenght limitHello
 
-def inputText(textBefore= "", maxlenght = 500, verification = False):
+def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="text", Forbiden = []):
+    if typeInput == "title":
+        Forbiden = ["@", "'", ".", ":", "\\", "%", "/", "!", "," ]
     Good = False
-    
     while (not Good ) or verification:
-        print("# ", end="")
-        response = input(textBefore + " ")
+        ForbidenCharacters = True
+        while ForbidenCharacters:
+            print("# ", end="")
+            response = input(textBefore + " ")
+            for caracter in Forbiden:
+                if caracter in response:
+                    printSentence("Caractère " + caracter + " interdit dans cette entrée")
+                    ForbidenCharacters = True
+                    break
+                ForbidenCharacters = False
+            
         if len(response) < maxlenght:
             Good = True
         else:
