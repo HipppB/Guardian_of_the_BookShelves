@@ -1,7 +1,7 @@
 import Load
 import os
 import Basics
-
+import Save
 def pageFileName(pageData):
     page = 1
     pageID = pageData.get("ID")
@@ -21,12 +21,10 @@ def deletePage(bookName, page):
             
     os.remove(os.path.join(Load.get_project_root(), 'books', bookName, page ))
     Book = Load.loadBook(bookName)
-
     for i in Book:
         if i['ID'] > int(ID):
             i['ID'] = i['ID'] - 1
         print('\n')
         print(i)
 
-    Save.saveBook()
 deletePage('TheBook', 1)
