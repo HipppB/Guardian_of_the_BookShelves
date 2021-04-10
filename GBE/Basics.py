@@ -73,7 +73,7 @@ def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="
                 printSentence("Success")
             else:
                 printSentence("The inputs don't match, please retry.")
-        if (response not in FromList) and (len(FromList) != 0):
+        if (response not in FromList) and (len(FromList) != 1):
             print("# Invalid, please retry. Enter \"exit program\" to go back.")
             Good = False
     return response
