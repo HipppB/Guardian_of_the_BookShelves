@@ -105,12 +105,23 @@ def menuListPages(LoadedBook, Mode= "List"):
     Ba.clear()
     Ba.line()
     ListPage = Load.listPages(LoadedBook)
-    if Mode == "list":
+    if Mode == "List":
         Ba.printTitle("List of all pages" + LoadedBook , True)
         Ba.emptyLine()
         Ba.line()
         for Page in ListPage[1]:
             Ba.printSentence("- " + Page)
+        listchoices = ["Modify a Page", "Delete a Page", "Quit"]
+        Ba.emptyLine()
+        Ba.line()
+        NumChoice = Ba.Choice(listchoices)
+        if NumChoice == 0:
+            menuListPages(LoadedBook, Mode= "Modify")
+        elif NumChoice == 1:
+            menuListPages(LoadedBook, Mode= "Delete")
+        elif NumChoice == 2:
+            pass
+        
 
     elif Mode == "Modify":
         Ba.printTitle("Select a page to Modify" + LoadedBook , True)
@@ -120,17 +131,29 @@ def menuListPages(LoadedBook, Mode= "List"):
         for Page in ListPage[1]:
             Ba.printSentence(str(i) +". " + Page)
             i += 1
+        NumChoice = Ba.inputNumber(range(0, i + 1))
+        menuViewPage(ListPage[1][NumChoice])
+
+
     elif Mode == "Delete":
         Ba.printTitle("Select a page to delete" + LoadedBook , True)
         Ba.printTitle("/!\\ Cannot be delete ! /!\\" + LoadedBook , True)
         Ba.emptyLine()
         Ba.line()
         for Page in ListPage[1]:
-            Ba.printSentence("- " + Page)    
+            Ba.printSentence("- " + Page)   
+        NumChoice = Ba.inputText(textBefore="Enter the name of the page you want to delete", FromList= ListPage[1])
+        #Appeler la foncton de suppression de page avec comme parametre la page
+        input("")
+
+
     Ba.emptyLine()
     Ba.line()
 
 
 
-def menuViewPage(LoadedBook):
+def menuViewPage(LoadedPage):
+    Ba.clear()
+    Ba.line()
+    print("Edit de la page \n", LoadedPage)
     pass

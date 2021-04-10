@@ -43,10 +43,11 @@ def printTitle(sentence, centered = False):
 
 # Input Text with or without verification and lenght limitHello
 
-def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="text", Forbiden = []):
+def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="text", Forbiden = [], FromList=[]):
     if typeInput == "title":
         Forbiden = ["@", "'", ".", ":", "\\", "%", "/", "!", "," ]
     Good = False
+    FromList += ["exit program"]
     while (not Good ) or verification:
         ForbidenCharacters = True
         while ForbidenCharacters:
@@ -72,6 +73,9 @@ def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="
                 printSentence("Success")
             else:
                 printSentence("The inputs don't match, please retry.")
+        if (response not in FromList) and (len(FromList) != 0):
+            print("# Invalid, please retry. Enter \"exit program\" to go back.")
+            Good = False
     return response
 
 
