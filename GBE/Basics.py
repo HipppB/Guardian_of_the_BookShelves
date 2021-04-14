@@ -3,7 +3,7 @@ lengthspace = lengthmenu - 2
 
 #CLear terminal View
 def clear():
-    print("\n" * 40)
+    print("\n" * 100)
 
 #Full Line
 def line():
@@ -76,7 +76,6 @@ def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="
             if response != "exit program":
                 print("# Invalid, please retry. Enter \"exit program\" to go back.")
                 Good = False
-        print(Good, FromList, response, verification)
     return response
 
 

@@ -1,4 +1,5 @@
 import os
+import shutil
 import json
 from pathlib import Path
 
@@ -30,3 +31,7 @@ def createFolder(bookName):
   if not os.path.exists(filePath):
         os.makedirs(filePath)
 
+def DeleteFolder(bookName):
+  filePath = os.path.join(get_project_root(), 'Books', bookName)
+  if os.path.exists(filePath):
+    shutil.rmtree(filePath)
