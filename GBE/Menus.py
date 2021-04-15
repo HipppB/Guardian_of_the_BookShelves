@@ -55,7 +55,7 @@ def menuListBook(EditMode = False):
         ListTheBooks(ListBooks, Mode = "ID")
         Ba.emptyLine()
         Ba.line()
-        Ba.printTitle("Choose a Book to duplicate by typing its number", True)
+        Ba.printTitle("Choose a Book by typing its number", True)
         BookNumber = Ba.inputNumber(range(0, len(ListBooks)))
         Ba.line()
         return ListBooks[BookNumber]
@@ -77,6 +77,7 @@ def menuListBook(EditMode = False):
             pass
         elif NumChoice == 1:
             menuListBook(EditMode= True)
+
 
 def menuDeleteBook(ListBooks):
     Ba.clear()
