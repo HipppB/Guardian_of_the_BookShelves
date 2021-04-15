@@ -35,3 +35,12 @@ def DeleteFolder(bookName):
   filePath = os.path.join(get_project_root(), 'Books', bookName)
   if os.path.exists(filePath):
     shutil.rmtree(filePath)
+
+def copyBook(bookName):
+  filePath = os.path.join(get_project_root(), 'Books', bookName)
+  bookName = bookName + " Copy"
+  filePath2 = os.path.join(get_project_root(), 'Books', bookName)
+  while os.path.exists(filePath2):
+    bookName = bookName + " Copy"
+    filePath2 = os.path.join(get_project_root(), 'Books', bookName)
+  shutil.copytree(filePath, filePath2)

@@ -16,7 +16,7 @@ def mainMenu():
         Ba.emptyLine()
         #Mettre la liste des livres ici
         Ba.line()
-        listchoices = ["Create Book", "Edit Book", "Delete Book", "Quit Program"]
+        listchoices = ["Create Book", "Edit Book", "Delete Book", "Duplicate Book", "Quit Program"]
         NumChoice = Ba.Choice(listchoices)
         Ba.printSentence("You choose the choice number " + str(NumChoice))
         Ba.line()
@@ -30,6 +30,8 @@ def mainMenu():
         if NumChoice == 2:
             menuDeleteBook(ListBooks)
         if NumChoice == 3:
+            Save.copyBook("Book1")
+        if NumChoice == 4:
             break
     Ba.clear()
     Ba.line()
@@ -123,34 +125,33 @@ def menuEditPage(LoadedPage):
     Ba.clear()
     Ba.line
 def menuEditBook(LoadedBook):
-    Ba.clear()
-    Ba.line()
-    Ba.printTitle("Edition of the book " + LoadedBook , True)
-    Ba.emptyLine()
-    Ba.printSentence("From here you can Add a page, look to all the pages of the book, and even more ! Just enter what you want to do !")
-    Ba.printSentence("The Page number 0 is the main page of your book.")
-    Ba.emptyLine()
-    ListPage = Load.listPages(LoadedBook)
-    Ba.printSentence("Pages in this book :")
-    ListTheBooks(ListPage[1], Mode = "ID")
-    Ba.emptyLine()
-    Ba.line()
-    listchoices = ["Create page", "Delete a Page", "Modify a Page", "See Links between page", "Quit"]
-    NumChoice = Ba.Choice(listchoices)
-    if NumChoice == 0:
-        menuCreatePage(LoadedBook)
-    elif NumChoice == 1:
-        menuListPages(LoadedBook, Mode= "Delete")
-    elif NumChoice == 2:
-        menuListPages(LoadedBook, Mode= "Modify")
-    elif NumChoice == 3:
-        menuListPages(LoadedBook, Mode= "List")
-    elif NumChoice == 4:
-        pass
-    elif NumChoice == 5:
-        pass
-    else:
-        print("Their was a problem !")
+    while True:
+        Ba.clear()
+        Ba.line()
+        Ba.printTitle("Edition of the book " + LoadedBook , True)
+        Ba.emptyLine()
+        Ba.printSentence("From here you can Add a page, look to all the pages of the book, and even more ! Just enter what you want to do !")
+        Ba.printSentence("The Page number 0 is the main page of your book.")
+        Ba.emptyLine()
+        ListPage = Load.listPages(LoadedBook)
+        Ba.printSentence("Pages in this book :")
+        ListTheBooks(ListPage[1], Mode = "ID")
+        Ba.emptyLine()
+        Ba.line()
+        listchoices = ["Create page", "Delete a Page", "Modify a Page", "See Links between page", "Quit"]
+        NumChoice = Ba.Choice(listchoices)
+        if NumChoice == 0:
+            menuCreatePage(LoadedBook)
+        elif NumChoice == 1:
+            menuListPages(LoadedBook, Mode= "Delete")
+        elif NumChoice == 2:
+            menuListPages(LoadedBook, Mode= "Modify")
+        elif NumChoice == 3:
+            pass
+        elif NumChoice == 4:
+            break
+        else:
+            print("Their was a problem !")
             
 # Sous menu Edit Book
 
