@@ -30,7 +30,8 @@ def mainMenu():
         if NumChoice == 2:
             menuDeleteBook(ListBooks)
         if NumChoice == 3:
-            Save.copyBook("Book1")
+            Save.copyBook(menuListBook(EditMode= "Return"))
+
         if NumChoice == 4:
             break
     Ba.clear()
@@ -50,6 +51,14 @@ def menuListBook(EditMode = False):
     Ba.printTitle("List of all books :", True)
     Ba.emptyLine()
     ListBooks = Load.listBook()
+    if EditMode == "Return":
+        ListTheBooks(ListBooks, Mode = "ID")
+        Ba.emptyLine()
+        Ba.line()
+        Ba.printTitle("Choose a Book to duplicate by typing its number", True)
+        BookNumber = Ba.inputNumber(range(0, len(ListBooks)))
+        Ba.line()
+        return ListBooks[BookNumber]
     if EditMode:
         ListTheBooks(ListBooks, Mode = "ID")
     else:
