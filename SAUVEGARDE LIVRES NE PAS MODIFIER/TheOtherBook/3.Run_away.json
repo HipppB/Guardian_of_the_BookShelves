@@ -2,7 +2,7 @@
   "ID": 3,
   "title": "Run away",
   "Description": "You ran away and used your shield to protect yourself from Prospero's attacks! Good idea! Your shield has a high power of reflection and sends back any magical spell! Prospero's attacks turns on him! He's deeply hurt but not enough he could come back and cause some more pain! Be careful!",
-  "book": "TheBook",
+  "book": "TheOtherBook",
   "choices": {
     "0": {
       "Name": "Back to page 0",

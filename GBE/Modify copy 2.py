@@ -21,5 +21,3 @@ def deletePage(bookName, page):
             os.remove(os.path.join(Load.get_project_root(), 'Books', bookName, str(pageFileName(i)) ))
             i['ID'] = i['ID'] - 1
             Save.savePage(i)
-        
-deletePage("The gardians of the Bookshelves' Adventure", 1)

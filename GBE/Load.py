@@ -18,21 +18,22 @@ def listBook():
     bookList = []
     fileList = os.listdir(os.path.join(get_project_root(), 'Books'))
     for b in fileList:
-        page = json.load(open(os.path.join(get_project_root(), 'Books', b, 'Page0.json')))
-        bookString = (str(page["ID"]) + '. ' + page["book"])
+        pages = os.listdir(os.path.join(get_project_root(), 'Books', b))
+        pageData = json.load(open(os.path.join(get_project_root(), 'Books', b, pages[0])))
+        bookString = pageData["Book"]
         bookList.append(bookString)
     return bookList 
-    # ["1. bookTitle1","2. bookTitle2"]
+    # ["bookTitle1","bookTitle2"]
 
 def listPages(book):
     pageList = []
-    fileList = sorted(os.listdir(os.path.join(get_project_root(), 'books', book)))
+    fileList = sorted(os.listdir(os.path.join(get_project_root(), 'Books', book)))
     for p in fileList:
         page = json.load(open(os.path.join(get_project_root(), 'Books', book, p)))
-        pageString = (str(page["ID"]) + '. ' + page["title"])
+        pageString = page["title"]
         pageList.append(pageString)
     return pageList 
-    # ["0. PageName", "1. PageName"]
+    # ["PageName", "PageName"]
 
 def loadPage(book, page):
     Page = json.load(open(os.path.join(get_project_root(), 'Books', book, page)))
@@ -40,6 +41,6 @@ def loadPage(book, page):
     # Dictionnary of the page in python format
 
 def pageNumber(book):
-    num = len(listPages(book)[1])
+    num = len(listPages(book))
     return num
 

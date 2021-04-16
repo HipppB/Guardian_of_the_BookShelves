@@ -145,7 +145,7 @@ def menuEditBook(LoadedBook):
         Ba.emptyLine()
         ListPage = Load.listPages(LoadedBook)
         Ba.printSentence("Pages in this book :")
-        ListTheBooks(ListPage[1], Mode = "ID")
+        ListTheBooks(ListPage, Mode = "ID")
         Ba.emptyLine()
         Ba.line()
         listchoices = ["Create page", "Delete a Page", "Modify a Page", "See Links between page", "Quit"]
@@ -204,7 +204,7 @@ def menuListPages(LoadedBook, Mode= "List"):
         Ba.printTitle("/!\\ Cannot be delete ! /!\\" + LoadedBook , True)
         Ba.emptyLine()
         Ba.line()
-        for Page in ListPage[1]:
+        for Page in ListPage:
             Ba.printSentence("- " + Page)   
         NumChoice = Ba.inputText(textBefore="Enter the name of the page you want to delete : ", FromList= ListPage[1])
         #Call the delete function with parameter "page" to delete a page
