@@ -127,7 +127,7 @@ def createPage(book):
     #loadPage["ID"]=pageNumber(book)
     loadPage["title"]= input("enter title")
     loadPage["description"]= input("enter a description")
-    loadPage["book"]= book
+    loadPage["Book"]= book
     loadPage["choice"]={}
     return loadPage
 

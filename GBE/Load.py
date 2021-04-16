@@ -20,7 +20,7 @@ def listBook():
     for book in fileList:
         bookList.append(book)
     return bookList 
-    # ["1. bookTitle1","2. bookTitle2"]
+    # ["bookTitle1","bookTitle2"]
 
 def listPages(book):
     pageList = [[],[]]
@@ -38,6 +38,6 @@ def loadPage(book, page):
     # Dictionnary of the page in python format
 
 def pageNumber(book):
-    num = len(listPages(book)[1])
+    num = len(listPages(book))
     return num
 
