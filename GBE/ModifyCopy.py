@@ -1,4 +1,4 @@
-import Basics
+from . import Basics
 
 LoadPage = {
   "ID": 1,
