@@ -13,7 +13,7 @@ def line():
 def emptyLine():
     print("#" + " " * lengthspace + "#")
 
-#Print a sentence and go to line automaticly
+#Print a sentence and go to line automatically
 def printSentence(sentence, centered = False):
     words = sentence.split()
     print("# ", end="")
@@ -41,7 +41,7 @@ def printTitle(sentence, centered = False):
             print("#" + " " * int((lengthspace - length)/2), sentence, " " * int((lengthspace + 1 - length)/2) + "#")
 
 
-# Input Text with or without verification and lenght limitHello
+# Input Text with or without verification and lenght limit
 
 def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="text", Forbiden = [], FromList=[]):
     if typeInput == "title":

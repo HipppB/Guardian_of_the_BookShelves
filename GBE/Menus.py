@@ -120,11 +120,11 @@ def menuCreateNewBook():
 def menuCreatePage(LoadedBook):
     Ba.clear()
     Ba.line()
-    Ba.printTitle("Ajoutez une page au livre " + LoadedBook, centered=True)
+    Ba.printTitle("Add a page to the book " + LoadedBook, centered=True)
     Ba.emptyLine()
-    Ba.printSentence("Choisissez le nom de votre nouvelle page et une description, vous pourrez modifier ces informations par la suite ainsi que creer les choix pour l'utilisateur.")
+    Ba.printSentence("Choose the name of your new page and a description, you'll be able to modify these information later and so create choices for the user.")
     Ba.emptyLine()
-    Ba.printSentence("Le numero de la page est attribué automatiquement et est succeptible d'être modifié par le programme, vous pouvez marquer " + str("{pageNumber}")  + " pour l'inclure dans le titre ou la description de votre page")
+    Ba.printSentence("The number of the page is automatically given and can be modified by the program, you can write " + str("{pageNumber}")  + " pour l'inclure dans le titre ou la description de votre page")
     LoadedPage = Modify.CreatePage(LoadedBook)
     Ba.emptyLine
     Ba.line
@@ -207,7 +207,7 @@ def menuListPages(LoadedBook, Mode= "List"):
         for Page in ListPage[1]:
             Ba.printSentence("- " + Page)   
         NumChoice = Ba.inputText(textBefore="Enter the name of the page you want to delete : ", FromList= ListPage[1])
-        #Appeler la foncton de suppression de page avec comme parametre la page
+        #Call the delete function with parameter "page" to delete a page
         input("TO DO mais ca à bien recu l'ordre de supprimer la page suivante : " + NumChoice)
 
 
