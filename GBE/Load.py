@@ -30,7 +30,7 @@ def listPage():
 
 def listPages(book):
     pageList = []
-    fileList = os.listdir(os.path.join(get_project_root(), 'Books', book))
+    fileList = sorted(os.listdir(os.path.join(get_project_root(), 'books', book)))
     for p in fileList:
         page = json.load(open(os.path.join(get_project_root(), 'Books', book, p)))
         pageString = (str(page["ID"]) + '. ' + page["title"])

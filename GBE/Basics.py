@@ -3,7 +3,7 @@ lengthspace = lengthmenu - 2
 
 #CLear terminal View
 def clear():
-    print("\n" * 40)
+    print("\n" * 100)
 
 #Full Line
 def line():
@@ -13,7 +13,7 @@ def line():
 def emptyLine():
     print("#" + " " * lengthspace + "#")
 
-#Print a sentence and go to line automaticly
+#Print a sentence and go to line automatically
 def printSentence(sentence, centered = False):
     words = sentence.split()
     print("# ", end="")
@@ -41,21 +41,20 @@ def printTitle(sentence, centered = False):
             print("#" + " " * int((lengthspace - length)/2), sentence, " " * int((lengthspace + 1 - length)/2) + "#")
 
 
-# Input Text with or without verification and lenght limitHello
+# Input Text with or without verification and lenght limit
 
 def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="text", Forbiden = [], FromList=[]):
     if typeInput == "title":
         Forbiden = ["@", "'", ".", ":", "\\", "%", "/", "!", "," ]
     Good = False
-    FromList += ["exit program"]
-    while (not Good ) or verification:
+    while (not Good) or verification:
         ForbidenCharacters = True
         while ForbidenCharacters:
             print("# ", end="")
             response = input(textBefore + " ")
             for caracter in Forbiden:
                 if caracter in response:
-                    printSentence("Caractère " + caracter + " interdit dans cette entrée")
+                    printSentence("Type " + caracter + " forbidden in this entry")
                     ForbidenCharacters = True
                     break
                 ForbidenCharacters = False
@@ -65,7 +64,7 @@ def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="
         if len(response) < maxlenght:
             Good = True
         else:
-            print("# Incorrect Response, the max lenght is", maxlenght)
+            print("# Incorrect Response, the maximum lenght is", maxlenght)
         if verification and Good:
             responseVerification = input("# Please confirm : ")
             if responseVerification == response:
@@ -73,9 +72,10 @@ def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="
                 printSentence("Success")
             else:
                 printSentence("The inputs don't match, please retry.")
-        if (response not in FromList) and (len(FromList) != 1):
-            print("# Invalid, please retry. Enter \"exit program\" to go back.")
-            Good = False
+        if (response not in FromList) and (len(FromList) > 0):
+            if response != "exit program":
+                print("# Invalid, please retry. Enter \"exit program\" to go back.")
+                Good = False
     return response
 
 
@@ -103,7 +103,7 @@ def Choice(listeChoice):
     NbDeChoice = len(listeChoice)
     Choice = listeChoice
     if NbDeChoice > 15:
-        print("Error -- Too muche Choices")
+        print("Error -- Too much Choices")
         return 400
     def printChoices(FirstLine = False):
         paternes = {1:(1,), 2:(2,), 3:(3,), 4:(4,), 5:(3,2), 6:(3,3), 7:(4,3), 8:(4,4), 9:(3,3,3), 10:(4,3,3), 11:(4,4,3), 12:(4,4,4), 13:(4,4,3,2), 14:(4,4,3,3), 15:(4,4,4,3)}

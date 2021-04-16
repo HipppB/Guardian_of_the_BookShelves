@@ -10,9 +10,13 @@ def mainMenu():
         Ba.emptyLine()
         Ba.printSentence("From here you can modify, create and list all the books that have been created and that are in the file system !")
         Ba.emptyLine()
+        Ba.printSentence("List of your books :")
+        ListBooks = Load.listBook()
+        ListTheBooks(ListBooks, Mode = "List")
         Ba.emptyLine()
+        #Mettre la liste des livres ici
         Ba.line()
-        listchoices = ["Create Book", "Edit Book", "List Books", "Quit Program"]
+        listchoices = ["Create Book", "Edit Book", "Delete Book", "Duplicate Book", "Quit Program"]
         NumChoice = Ba.Choice(listchoices)
         Ba.printSentence("You choose the choice number " + str(NumChoice))
         Ba.line()
@@ -24,9 +28,19 @@ def mainMenu():
         if NumChoice == 1:
             menuListBook(EditMode= True)
         if NumChoice == 2:
-            menuListBook(EditMode= False)
+            menuDeleteBook(ListBooks)
         if NumChoice == 3:
+            Save.copyBook(menuListBook(EditMode= "Return"))
+
+        if NumChoice == 4:
             break
+    Ba.clear()
+    Ba.line()
+    Ba.printTitle("Closing the program", centered = True)
+    Ba.emptyLine()
+    Ba.printSentence("See you soon !")
+    Ba.emptyLine()
+    Ba.line()
 
 
 # Menu CreateNewBook
@@ -37,13 +51,18 @@ def menuListBook(EditMode = False):
     Ba.printTitle("List of all books :", True)
     Ba.emptyLine()
     ListBooks = Load.listBook()
-    i = 0
-    for Book in ListBooks:
-        if EditMode:
-            Ba.printSentence(str(i) +". " + Book)
-            i += 1
-        else:
-            Ba.printSentence("- " + Book)
+    if EditMode == "Return":
+        ListTheBooks(ListBooks, Mode = "ID")
+        Ba.emptyLine()
+        Ba.line()
+        Ba.printTitle("Choose a Book by typing its number", True)
+        BookNumber = Ba.inputNumber(range(0, len(ListBooks)))
+        Ba.line()
+        return ListBooks[BookNumber]
+    if EditMode:
+        ListTheBooks(ListBooks, Mode = "ID")
+    else:
+        ListTheBooks(ListBooks, Mode = "List")
     Ba.emptyLine()
     Ba.line()
     if EditMode:
@@ -58,7 +77,32 @@ def menuListBook(EditMode = False):
             pass
         elif NumChoice == 1:
             menuListBook(EditMode= True)
+
+
+def menuDeleteBook(ListBooks):
+    Ba.clear()
+    Ba.line()
+    Ba.printTitle("List of all books : Choose One to delete", True)
+    Ba.emptyLine()
+    ListTheBooks(ListBooks, Mode = "List")
+    Ba.emptyLine()
+    Ba.line()
+    Choice = Ba.inputText(textBefore="Enter the name of the book you want to delete : ", FromList= ListBooks, verification = True)
+    if Choice == "exit program":
+        pass
+    else:
+        Save.DeleteFolder(Choice)
+        print(Choice)
+    input()
             
+def ListTheBooks(ListBooks, Mode = "List"):
+    i = 0
+    for Book in ListBooks:
+        if Mode == "ID":
+            Ba.printSentence(str(i) +". " + Book)
+            i += 1
+        if Mode == "List":
+            Ba.printSentence("- " + Book)
 
 def menuCreateNewBook():
     Ba.clear()
@@ -73,31 +117,51 @@ def menuCreateNewBook():
     Save.savePage(LoadedPage)
     return LoadedBook
 
-def menuEditBook(LoadedBook):
+def menuCreatePage(LoadedBook):
     Ba.clear()
     Ba.line()
-    Ba.printTitle("Edition of the book " + LoadedBook , True)
+    Ba.printTitle("Add a page to the book " + LoadedBook, centered=True)
     Ba.emptyLine()
-    Ba.printSentence("From here you can Add a page, look to all the pages of the book, and even more ! Just enter what you want to do !")
-    Ba.printSentence("The Page 0 is the main page of your book.")
+    Ba.printSentence("Choose the name of your new page and a description, you'll be able to modify these information later and so create choices for the user.")
     Ba.emptyLine()
-    Ba.line()
-    listchoices = ["Create page", "Delete Page", "Modify Page", "See all Pages", "See all Links", "Quit"]
-    NumChoice = Ba.Choice(listchoices)
-    if NumChoice == 0:
-        Modify.CreatePage(LoadedBook)
-    elif NumChoice == 1:
-        menuListPages(LoadedBook, Mode= "Delete")
-    elif NumChoice == 2:
-        menuListPages(LoadedBook, Mode= "Modify")
-    elif NumChoice == 3:
-        menuListPages(LoadedBook, Mode= "List")
-    elif NumChoice == 4:
-        pass
-    elif NumChoice == 5:
-        pass
-    else:
-        print("Their was a problem !")
+    Ba.printSentence("The number of the page is automatically given and can be modified by the program, you can write " + str("{pageNumber}")  + " to add it in the title or description of your page")
+    LoadedPage = Modify.CreatePage(LoadedBook)
+    Ba.emptyLine
+    Ba.line
+    Save.savePage(LoadedPage)
+    return LoadedPage
+
+def menuEditPage(LoadedPage):
+    Ba.clear()
+    Ba.line
+def menuEditBook(LoadedBook):
+    while True:
+        Ba.clear()
+        Ba.line()
+        Ba.printTitle("Edition of the book " + LoadedBook , True)
+        Ba.emptyLine()
+        Ba.printSentence("From here you can Add a page, look to all the pages of the book, and even more ! Just enter what you want to do !")
+        Ba.printSentence("The Page number 0 is the main page of your book.")
+        Ba.emptyLine()
+        ListPage = Load.listPages(LoadedBook)
+        Ba.printSentence("Pages in this book :")
+        ListTheBooks(ListPage[1], Mode = "ID")
+        Ba.emptyLine()
+        Ba.line()
+        listchoices = ["Create page", "Delete a Page", "Modify a Page", "See Links between page", "Quit"]
+        NumChoice = Ba.Choice(listchoices)
+        if NumChoice == 0:
+            menuCreatePage(LoadedBook)
+        elif NumChoice == 1:
+            menuListPages(LoadedBook, Mode= "Delete")
+        elif NumChoice == 2:
+            menuListPages(LoadedBook, Mode= "Modify")
+        elif NumChoice == 3:
+            pass
+        elif NumChoice == 4:
+            break
+        else:
+            print("Their was a problem !")
             
 # Sous menu Edit Book
 
@@ -142,9 +206,9 @@ def menuListPages(LoadedBook, Mode= "List"):
         Ba.line()
         for Page in ListPage[1]:
             Ba.printSentence("- " + Page)   
-        NumChoice = Ba.inputText(textBefore="Enter the name of the page you want to delete", FromList= ListPage[1])
-        #Appeler la foncton de suppression de page avec comme parametre la page
-        input("")
+        NumChoice = Ba.inputText(textBefore="Enter the name of the page you want to delete : ", FromList= ListPage[1])
+        #Call the delete function with parameter "page" to delete a page
+        input("TO DO mais ca à bien recu l'ordre de supprimer la page suivante : " + NumChoice)
 
 
     Ba.emptyLine()
