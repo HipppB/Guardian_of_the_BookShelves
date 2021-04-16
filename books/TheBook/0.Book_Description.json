@@ -2,7 +2,7 @@
   "ID": 0,
   "title": "Book Description.",
   "Description": "You and your friends are the guardians of a famous magical library. You soon realize that some evil charracters came out of the books and you have to stop them",
-  "Book": "The gardians of the Bookshelves' Adventure",
+  "book": "TheBook",
   "choices": {
     "0": {
       "Name": "Description of your book",

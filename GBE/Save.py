@@ -8,11 +8,11 @@ def get_project_root() -> Path:
 
 def savePage(pageData):
 
-  bookName = pageData.get("Book")
+  bookName = pageData.get("book")
   pageID = pageData.get("ID")
   pageTitle = pageData.get("title")
 
-  pageName = str(pageID) + "." + str(pageTitle) + ".json"
+  pageName = formatString(str(pageTitle)) + ".json"
 
   filePath = os.path.join(get_project_root(), 'Books', bookName, pageName )
 
@@ -20,4 +20,13 @@ def savePage(pageData):
   file.truncate(0)
   json.dump(pageData, file)
   file.close()
+
+def formatString(StringToFormat):
+  StringToFormat = StringToFormat.replace(" ", "_").replace(":", "")
+  return StringToFormat
+
+def createFolder(bookName):
+  filePath = os.path.join(get_project_root(), 'Books', bookName)
+  if not os.path.exists(filePath):
+        os.makedirs(filePath)
 

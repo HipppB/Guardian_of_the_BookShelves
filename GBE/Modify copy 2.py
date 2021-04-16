@@ -15,6 +15,7 @@ def deletePage(bookName, page):
         if i['ID'] == page:
             page = pageFileName(i)
             ID = i['ID']
+            Book.pop(i)
             break
     try: 
         os.remove(os.path.join(Load.get_project_root(), 'Books', bookName, page ))
