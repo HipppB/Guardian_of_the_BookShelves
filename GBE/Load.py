@@ -14,7 +14,7 @@ def loadBook(book):
         Books.append(page)
     return Books
 
-def indexedBook():
+def listBook():
     bookList = []
     fileList = os.listdir(os.path.join(get_project_root(), 'Books'))
     for b in fileList:
@@ -23,10 +23,6 @@ def indexedBook():
         bookList.append(bookString)
     return bookList 
     # ["1. bookTitle1","2. bookTitle2"]
-def listPage():
-    fileList = os.listdir(os.path.join(get_project_root(), 'books'))
-    return fileList 
-    # ["bookTitle1","bookTitle2"]
 
 def listPages(book):
     pageList = []
