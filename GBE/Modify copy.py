@@ -6,17 +6,20 @@ LoadPage = {
   "Description": "string",
   "Book": "Book1",
   "choices": {
-    "0": { "Name": "", "Page": 0, "GiveItem": [], "TakeItem": [] },
-    "1": { "Name": "string", "Page": 1, "GiveItem": ["Sword"], "TakeItem": [] }
+    "0": { "Name": "Choix1", "Page": 0, "GiveItem": [], "TakeItem": [] },
+    "2": { "Name": "Choix2", "Page": 1, "GiveItem": ["Sword"], "TakeItem": [] },
+    "8": { "Name": "Choix3", "Page": 1, "GiveItem": ["Sword"], "TakeItem": [] },
   }
 }
 
 def resetChoiceID(PageData):
-    choiceList = list(PageData["numbers"])
-    valueList = []
-    for value in choiceList:
-        valueList.append(value)
-    PageData["numbers"] = dict(zip(valueList, range(len(valueList))))
+
+    valueList = list(PageData["choices"].values())
+
+    PageData["choices"] = {}
+
+    for entry in valueList:
+        PageData["choices"][str(valueList.index(entry))] = entry
 
     return PageData
 
@@ -24,12 +27,15 @@ def resetChoiceID(PageData):
 def createChoice(PageData):
     newChoice = { "Name": "", "Page": 0, "GiveItem": [], "TakeItem": [] }
     numChoices = len(LoadPage["choices"])
-    LoadPage["choices"][int(numChoices)] = newChoice
+    LoadPage["choices"][numChoices] = newChoice
     return LoadPage
 
 
 def deleteChoice(PageData):
-    choiceToRemove = Basics.inputText("Choice to remove ? :")
+    print("Enter the number of the choice you want to remove")
+
+    choiceToRemove = str(Basics.inputNumber())
+
     del PageData["choices"][choiceToRemove]
 
     return PageData
@@ -43,17 +49,13 @@ def modifyChoice(PageData):
     valueToChange = Basics.inputText("Into what : ")
     if partToChange == "Page":
         valueToChange = int(valueToChange)
+    
 
     choiceData[partToChange] = valueToChange
 
     return PageData
 
-
-
-deleteChoice(LoadPage)
-
-print(LoadPage)
-
+createChoice(LoadPage)
 resetChoiceID(LoadPage)
 
 print(LoadPage)
