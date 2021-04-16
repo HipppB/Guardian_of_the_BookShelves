@@ -1,0 +1,18 @@
+{
+  "ID": 2,
+  "title": "Fight Prospero",
+  "Description": "You decided to fight Prospero! Bad idea! He attacks you with fire and your sword is ruined. Your adventure ends here!",
+  "book": "TheBook",
+  "choices": {
+    "0": {
+      "Name": "Back to page 0",
+      "Page": 0,
+      "GiveItem": ["Shield"],
+      "TakeItem": ["end"]
+    },
+    "1": {
+      "Name": "Back to page 1",
+      "Page": 1
+    }
+  }
+}
