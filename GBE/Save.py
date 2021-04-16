@@ -9,7 +9,7 @@ def get_project_root() -> Path:
 
 def savePage(pageData):
 
-  bookName = pageData.get("book")
+  bookName = pageData.get("Book")
   pageID = pageData.get("ID")
   pageTitle = pageData.get("title")
 
