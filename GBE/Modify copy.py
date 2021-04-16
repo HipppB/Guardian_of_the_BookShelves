@@ -49,7 +49,7 @@ def modifyChoice(PageData):
     valueToChange = Basics.inputText("Into what : ")
     if partToChange == "Page":
         valueToChange = int(valueToChange)
-    
+
 
     choiceData[partToChange] = valueToChange
 
