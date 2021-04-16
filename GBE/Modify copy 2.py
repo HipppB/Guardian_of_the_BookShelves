@@ -22,5 +22,4 @@ def deletePage(bookName, page):
             i['ID'] = i['ID'] - 1
             Save.savePage(i)
         
-
 deletePage("The gardians of the Bookshelves' Adventure", 1)
