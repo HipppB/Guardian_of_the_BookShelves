@@ -2,6 +2,7 @@ import os
 import shutil
 import json
 from pathlib import Path
+from . import Load
 
 def get_project_root() -> Path:
   return Path(__file__).parent.parent
@@ -38,9 +39,13 @@ def DeleteFolder(bookName):
 
 def copyBook(bookName):
   filePath = os.path.join(get_project_root(), 'Books', bookName)
-  bookName = bookName + " Copy"
+  bookName = bookName + " copy"
   filePath2 = os.path.join(get_project_root(), 'Books', bookName)
   while os.path.exists(filePath2):
-    bookName = bookName + " Copy"
+    bookName = bookName + " copy"
     filePath2 = os.path.join(get_project_root(), 'Books', bookName)
   shutil.copytree(filePath, filePath2)
+  for Page in Load.listPages(bookName)[0]:
+    loadedPage = Load.loadPage(bookName, Page)
+    loadedPage["Book"] = bookName
+    savePage(loadedPage)
