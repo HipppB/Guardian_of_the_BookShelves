@@ -11,7 +11,7 @@ def CreatePage(book):
     loadPage["ID"] = pageNumber(book)
     loadPage["title"] = inputText(textBefore= "Enter a title : ", maxlenght = 500, verification = False, typeInput = "title")
     loadPage["description"] = inputText(textBefore= "Enter the description : ", maxlenght = 500, verification = False)
-    loadPage["Book"] = book
+    loadPage["book"] = book
     loadPage["choice"]={}
     line()
     return loadPage
@@ -24,7 +24,7 @@ def CreateBlankPage(book, desc, title=""):
     loadPage["ID"] = pageNumber(book)
     loadPage["title"] = title
     loadPage["description"] = desc
-    loadPage["Book"] = book
+    loadPage["book"] = book
     loadPage["choice"]= {}
     line()
     return loadPage
