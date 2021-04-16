@@ -32,9 +32,9 @@ def createChoice(PageData):
 
 
 def deleteChoice(PageData):
-    print("Enter the number of the choice you want to remove")
 
-    choiceToRemove = str(Basics.inputNumber())
+
+    choiceToRemove = str(Basics.inputText("ID of choice you want remove : "))
 
     del PageData["choices"][choiceToRemove]
 
@@ -55,7 +55,7 @@ def modifyChoice(PageData):
 
     return PageData
 
-createChoice(LoadPage)
+deleteChoice(LoadPage)
 resetChoiceID(LoadPage)
 
 print(LoadPage)
