@@ -54,7 +54,7 @@ def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="
             response = input(textBefore + " ")
             for caracter in Forbiden:
                 if caracter in response:
-                    printSentence("Caractère " + caracter + " interdit dans cette entrée")
+                    printSentence("Type " + caracter + " forbidden in this entry")
                     ForbidenCharacters = True
                     break
                 ForbidenCharacters = False
@@ -64,7 +64,7 @@ def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="
         if len(response) < maxlenght:
             Good = True
         else:
-            print("# Incorrect Response, the max lenght is", maxlenght)
+            print("# Incorrect Response, the maximum lenght is", maxlenght)
         if verification and Good:
             responseVerification = input("# Please confirm : ")
             if responseVerification == response:
@@ -103,7 +103,7 @@ def Choice(listeChoice):
     NbDeChoice = len(listeChoice)
     Choice = listeChoice
     if NbDeChoice > 15:
-        print("Error -- Too muche Choices")
+        print("Error -- Too much Choices")
         return 400
     def printChoices(FirstLine = False):
         paternes = {1:(1,), 2:(2,), 3:(3,), 4:(4,), 5:(3,2), 6:(3,3), 7:(4,3), 8:(4,4), 9:(3,3,3), 10:(4,3,3), 11:(4,4,3), 12:(4,4,4), 13:(4,4,3,2), 14:(4,4,3,3), 15:(4,4,4,3)}

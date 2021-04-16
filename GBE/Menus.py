@@ -10,7 +10,7 @@ def mainMenu():
         Ba.emptyLine()
         Ba.printSentence("From here you can modify, create and list all the books that have been created and that are in the file system !")
         Ba.emptyLine()
-        Ba.printSentence("Liste des livres :")
+        Ba.printSentence("List of your books :")
         ListBooks = Load.listBook()
         ListTheBooks(ListBooks, Mode = "List")
         Ba.emptyLine()
@@ -124,7 +124,7 @@ def menuCreatePage(LoadedBook):
     Ba.emptyLine()
     Ba.printSentence("Choose the name of your new page and a description, you'll be able to modify these information later and so create choices for the user.")
     Ba.emptyLine()
-    Ba.printSentence("The number of the page is automatically given and can be modified by the program, you can write " + str("{pageNumber}")  + " pour l'inclure dans le titre ou la description de votre page")
+    Ba.printSentence("The number of the page is automatically given and can be modified by the program, you can write " + str("{pageNumber}")  + " to add it in the title or description of your page")
     LoadedPage = Modify.CreatePage(LoadedBook)
     Ba.emptyLine
     Ba.line
