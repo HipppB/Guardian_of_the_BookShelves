@@ -1,0 +1,20 @@
+{
+  "ID": 0,
+  "title": "string",
+  "description": "string",
+  "book": "TheOtherBook",
+  "choices": {
+    "0": {
+      "name": "string",
+      "page": 2,
+      "giveItems": [],
+      "TakeItems": []
+    },
+    "1": {
+      "name": "string",
+      "page": 3,
+      "giveItems": [],
+      "TakeItems": []
+    }
+  }
+}

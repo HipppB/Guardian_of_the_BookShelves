@@ -12,7 +12,7 @@ def savePage(pageData):
   pageID = pageData.get("ID")
   pageTitle = pageData.get("title")
 
-  pageName = formatString(str(pageTitle)) + ".json"
+  pageName = str(pageID) + "." + formatString(str(pageTitle)) + ".json"
 
   filePath = os.path.join(get_project_root(), 'Books', bookName, pageName )
 

@@ -1,5 +1,5 @@
-from Load import pageNumber
-from Basics import printSentence, inputText, line
+from GBE.Load import pageNumber
+from GBE.Basics import printSentence, inputText, line
 
 
 def CreatePage(book):
@@ -13,4 +13,15 @@ def CreatePage(book):
     loadPage["choice"]={}
     line()
 
+    return loadPage
+
+def CreateBlankPage(book, desc):
+    line()
+    loadPage={}
+    loadPage["ID"] = pageNumber(book)
+    loadPage["title"] = book
+    loadPage["description"] = desc
+    loadPage["book"] = book
+    loadPage["choice"]= {}
+    line()
     return loadPage
