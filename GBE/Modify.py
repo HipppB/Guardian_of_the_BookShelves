@@ -35,10 +35,10 @@ def pageFileName(pageData):
     pageName = str(pageID) + "." + Save.formatString(str(pageTitle)) + ".json"
     return pageName
 
-def deletePage(bookName, page):
+def deletePage(bookName, pageNumber):
     Book = Load.loadBook(bookName)
     for i in Book:
-        if i['ID'] == page:
+        if i['ID'] == pageNumber:
             ID = i['ID']
             os.remove(os.path.join(Load.get_project_root(), 'Books', bookName, str(pageFileName(i)) ))
 
