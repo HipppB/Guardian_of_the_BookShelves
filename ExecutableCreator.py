@@ -1,5 +1,5 @@
 from GBE import Menus
+from GBE import ModifyCopy as Modify
+# Menus.mainMenu()
 
-Menus.mainMenu()
-
-#Menus.menuViewPage()
+# Menus.menuViewPage()

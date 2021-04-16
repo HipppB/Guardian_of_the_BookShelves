@@ -1,4 +1,4 @@
-from . import Basics
+import Basics
 
 LoadPage = {
   "ID": 1,
@@ -13,14 +13,10 @@ LoadPage = {
 }
 
 def resetChoiceID(PageData):
-
     valueList = list(PageData["choices"].values())
-
     PageData["choices"] = {}
-
     for entry in valueList:
         PageData["choices"][str(valueList.index(entry))] = entry
-
     return PageData
 
 
@@ -32,27 +28,19 @@ def createChoice(PageData):
 
 
 def deleteChoice(PageData):
-
-
     choiceToRemove = str(Basics.inputText("ID of choice you want remove : "))
-
     del PageData["choices"][choiceToRemove]
-
     return PageData
 
 
 def modifyChoice(PageData):
     choiceToChange = Basics.inputText("ChoiceNumberToEdit :")
     choiceData = PageData["choices"][choiceToChange]
-
     partToChange = Basics.inputText("Change Name, Page, GiveItem or TakeItem:")
     valueToChange = Basics.inputText("Into what : ")
     if partToChange == "Page":
         valueToChange = int(valueToChange)
-
-
     choiceData[partToChange] = valueToChange
-
     return PageData
 
 deleteChoice(LoadPage)
