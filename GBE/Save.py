@@ -9,13 +9,13 @@ def get_project_root() -> Path:
 
 def savePage(pageData):
 
-  bookName = pageData.get("Book")
+  bookName = pageData.get("book")
   pageID = pageData.get("ID")
   pageTitle = pageData.get("title")
 
   pageName = str(pageID) + "." + formatString(str(pageTitle)) + ".json"
 
-  filePath = os.path.join(get_project_root(), 'Books', bookName, pageName )
+  filePath = os.path.join(get_project_root(), 'Books', bookName, pageName)
 
   file = open(filePath, "w+")
   file.truncate(0)

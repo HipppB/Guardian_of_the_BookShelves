@@ -195,8 +195,11 @@ def menuListPages(LoadedBook, Mode= "List"):
         for Page in ListPage[1]:
             Ba.printSentence(str(i) +". " + Page)
             i += 1
+        Ba.emptyLine()
+        
         NumChoice = Ba.inputNumber(range(0, i + 1))
-        menuViewPage(ListPage[1][NumChoice])
+        menuViewPage(LoadedBook, [ListPage[0][NumChoice],ListPage[1][NumChoice]])
+        Ba.line()
 
 
     elif Mode == "Delete":
@@ -209,6 +212,7 @@ def menuListPages(LoadedBook, Mode= "List"):
         NumChoice = Ba.inputText(textBefore="Enter the name of the page you want to delete : ", FromList= ListPage[1])
         #Call the delete function with parameter "page" to delete a page
         input("TO DO mais ca à bien recu l'ordre de supprimer la page suivante : " + NumChoice)
+        Modify.deletePage(LoadedBook, ListPage[1].index(NumChoice))
 
 
     Ba.emptyLine()
@@ -216,8 +220,16 @@ def menuListPages(LoadedBook, Mode= "List"):
 
 
 
-def menuViewPage(LoadedPage):
+def menuViewPage(LoadedBook, Page):
+    # We load the page :
+    LoadedPage = Load.loadPage(LoadedBook, Page[0])
+    # We display the screen :
     Ba.clear()
     Ba.line()
-    print("Edit de la page \n", LoadedPage)
+    Ba.printTitle("Modifying the page " + Page[1])
+    print(LoadedPage)
+    input()
+
+    # We save the page before leaving
+    Save.savePage(LoadedPage)
     pass

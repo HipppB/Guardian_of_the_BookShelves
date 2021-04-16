@@ -17,22 +17,20 @@ def loadBook(book):
 def listBook():
     bookList = []
     fileList = os.listdir(os.path.join(get_project_root(), 'Books'))
-    for b in fileList:
-        page = json.load(open(os.path.join(get_project_root(), 'Books', b, 'Page0.json')))
-        bookString = (str(page["ID"]) + '. ' + page["book"])
-        bookList.append(bookString)
+    for book in fileList:
+        bookList.append(book)
     return bookList 
     # ["1. bookTitle1","2. bookTitle2"]
 
 def listPages(book):
-    pageList = []
+    pageList = [[],[]]
     fileList = sorted(os.listdir(os.path.join(get_project_root(), 'books', book)))
     for p in fileList:
         page = json.load(open(os.path.join(get_project_root(), 'Books', book, p)))
-        pageString = (str(page["ID"]) + '. ' + page["title"])
-        pageList.append(pageString)
-    return pageList 
-    # ["0. PageName", "1. PageName"]
+        pageList[0].append(p)
+        pageList[1].append(page["title"])
+    return pageList
+    # [["0.PageName1.json", "1.PageName2.json"]["PageName1", "PageName2"]]
 
 def loadPage(book, page):
     Page = json.load(open(os.path.join(get_project_root(), 'Books', book, page)))
