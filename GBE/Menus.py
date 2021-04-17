@@ -145,7 +145,7 @@ def menuEditBook(LoadedBook):
         Ba.emptyLine()
         ListPage = Load.listPages(LoadedBook)
         Ba.printSentence("Pages in this book :")
-        ListTheBooks(ListPage[1], Mode = "ID")
+        ListTheBooks(ListPage[1], Mode = "List")
         Ba.emptyLine()
         Ba.line()
         listchoices = ["Create page", "Delete a Page", "Modify a Page", "See Links between page", "Quit"]
@@ -157,7 +157,7 @@ def menuEditBook(LoadedBook):
         elif NumChoice == 2:
             menuListPages(LoadedBook, Mode= "Modify")
         elif NumChoice == 3:
-            pass
+            MenuDisplayLinks(LoadedBook)
         elif NumChoice == 4:
             break
         else:
@@ -259,3 +259,17 @@ def menuViewPage(LoadedBook, Page):
     # We save the page before leaving
     Save.savePage(LoadedPage)
     pass
+
+def MenuDisplayLinks(LoadedBook):
+    Ba.clear()
+    Ba.line()
+    Ba.printTitle("All links in the book " + LoadedBook, centered=True)
+    Ba.emptyLine()
+    Ba.printSentence("Format : Number of the page Page (Choice Name) -> Number of the page it goes to")
+    Ba.emptyLine()
+    Load.listLinks(LoadedBook)
+    for choice in Load.listLinks(LoadedBook):
+        Ba.printSentence("- " + str(choice[0]) + " (" + choice[1] + ") -> " + str(choice[2]))
+    Ba.emptyLine()
+    Ba.line()
+    input("You can not modify page links from here, press enter to go back to previous menu")

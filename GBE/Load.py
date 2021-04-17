@@ -41,3 +41,13 @@ def pageNumber(book):
     num = len(listPages(book)[1])
     return num
 
+def listLinks(Book):
+    links = []
+    ListofPages = listPages(Book)
+    for page in ListofPages[0]:
+        PageData = loadPage(Book, page)
+        for choice in PageData["choices"]:
+            links.append([PageData["ID"], PageData["choices"][choice]["Name"], PageData["choices"][choice]["Page"]])
+    return links
+
+listLinks("The gardians of the Bookshelves' Adventure")
