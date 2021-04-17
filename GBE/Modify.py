@@ -47,3 +47,11 @@ def deletePage(bookName, pageNumber):
             os.remove(os.path.join(Load.get_project_root(), 'Books', bookName, str(pageFileName(i)) ))
             i['ID'] = i['ID'] - 1
             Save.savePage(i)
+    
+
+def ChangePageName(LoadedPage, newName):
+    oldPathName = os.path.join(Load.get_project_root(), 'Books', LoadedPage["Book"], pageFileName(LoadedPage))
+    LoadedPage["title"] = newName
+    newPathName = os.path.join(Load.get_project_root(), 'Books', LoadedPage["Book"], pageFileName(LoadedPage))
+    os.rename(oldPathName, newPathName)
+    return LoadedPage, pageFileName(LoadedPage)
