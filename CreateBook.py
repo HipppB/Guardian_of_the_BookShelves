@@ -128,7 +128,7 @@ def createPage(book):
     loadPage["title"]= input("enter title")
     loadPage["Description"]= input("enter a description")
     loadPage["Book"]= book
-    loadPage["choice"]={}
+    loadPage["choices"]={}
     return loadPage
 
 def menuDeletePage():
