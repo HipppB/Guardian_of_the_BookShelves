@@ -1,7 +1,4 @@
-from GBE.Save import get_project_root
-
-print(get_project_root())
-
+#print(get_project_root())
 LoadedPage = {
   "ID": 5,
   "title": "Test Ecriture",
@@ -12,3 +9,4 @@ LoadedPage = {
     "1": { "Name": "string", "Page": 1, "GiveItem": ["Sword"], "TakeItem": [] }
   }
 }
+

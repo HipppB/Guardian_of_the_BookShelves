@@ -43,10 +43,10 @@ def modifyChoice(PageData):
     choiceData[partToChange] = valueToChange
     return PageData
 
-deleteChoice(LoadPage)
-resetChoiceID(LoadPage)
+#deleteChoice(LoadPage)
+#resetChoiceID(LoadPage)
 
-print(LoadPage)
+#print(LoadPage)
 
 #modifyChoice(LoadPage)
 #createChoice(LoadPage)

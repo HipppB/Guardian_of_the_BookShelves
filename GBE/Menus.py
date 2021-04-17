@@ -226,10 +226,36 @@ def menuViewPage(LoadedBook, Page):
     # We display the screen :
     Ba.clear()
     Ba.line()
-    Ba.printTitle("Modifying the page " + Page[1])
-    print(LoadedPage)
-    input()
-
+    Ba.printTitle("Modifying the page " + Page[1], centered=True)
+    Ba.emptyLine()
+    Ba.printSentence("Name of the book : " + LoadedPage["Book"])
+    Ba.emptyLine()
+    Ba.printSentence("Page Name : " + LoadedPage["title"])
+    Ba.emptyLine()
+    Ba.printSentence("Page Number : " + str(LoadedPage["ID"]))
+    Ba.emptyLine()
+    Ba.printSentence("Page Text :")
+    Ba.printSentence(LoadedPage["Description"])
+    Ba.emptyLine()
+    Ba.printSentence("List of the choices :")
+    for key in LoadedPage["choices"]:
+        Ba.printSentence("- " + LoadedPage["choices"][key]["Name"] + " -> Go to page " + str(LoadedPage["choices"][key]["Page"]))
+        Ba.printSentence("Gives :", Alinea=True)
+        if len(LoadedPage["choices"][key]["GiveItem"]) != 0:
+            for Item in LoadedPage["choices"][key]["GiveItem"]:
+                Ba.printSentence("- " + Item, Alinea=True)
+        else:
+            Ba.printSentence("Nothing", Alinea=True)
+        Ba.printSentence("Takes  :", Alinea=True)
+        if len(LoadedPage["choices"][key]["TakeItem"]) != 0:
+            for Item in LoadedPage["choices"][key]["TakeItem"]:
+                Ba.printSentence("- " + Item, Alinea=True)
+        else:
+            Ba.printSentence("Nothing", Alinea=True)
+    listchoices = ["Modify Name", "Modify Description", "Modify Choices", "Back"]
+    Ba.emptyLine()
+    Ba.line()
+    NumChoice = Ba.Choice(listchoices)
     # We save the page before leaving
     Save.savePage(LoadedPage)
     pass

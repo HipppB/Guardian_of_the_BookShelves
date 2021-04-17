@@ -14,17 +14,32 @@ def emptyLine():
     print("#" + " " * lengthspace + "#")
 
 #Print a sentence and go to line automatically
-def printSentence(sentence, centered = False):
+def printSentence(sentence, centered = False, Alinea= False):
+    sentence = sentence.replace("\n", " ||| ")
     words = sentence.split()
-    print("# ", end="")
-    totallength = 1
+
+    if Alinea:
+        print("#\t ", end="")
+    else:
+        print("# ", end="")
+    if Alinea: 
+        totallength = 8
+    else:
+        totallength = 1
     for word in words:
         totallength += len(word) + 1
-        if totallength <= lengthspace:
+        if word == "|||":
+            print(" " * (lengthspace - (totallength - len(word) - 1)) + "#", end="")
+            print("\n# ", end="")
+            totallength = 1
+        elif totallength <= lengthspace:
             print(word, end=" ")
         else:
             print(" " * (lengthspace - (totallength - len(word) - 1)) + "#", end="")
-            print("\n# ", end="")
+            if Alinea:
+                print("#\t ", end="")
+            else:
+                print("\n# ", end="")
             print(word, end=" ")
             totallength = len(word) + 2
     print(" " * (lengthspace - (totallength)) + "#")
