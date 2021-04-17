@@ -55,3 +55,6 @@ def ChangePageName(LoadedPage, newName):
     newPathName = os.path.join(Load.get_project_root(), 'Books', LoadedPage["Book"], pageFileName(LoadedPage))
     os.rename(oldPathName, newPathName)
     return LoadedPage, pageFileName(LoadedPage)
+
+def ChangePageDescription(LoadedPage):
+    pass

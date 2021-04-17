@@ -14,7 +14,7 @@ def emptyLine():
     print("#" + " " * lengthspace + "#")
 
 #Print a sentence and go to line automatically
-def printSentence(sentence, centered = False, Alinea= False):
+def printSentence(sentence, centered = False, Alinea = False):
     sentence = sentence.replace("\n", " ||| ")
     words = sentence.split()
 
@@ -44,6 +44,10 @@ def printSentence(sentence, centered = False, Alinea= False):
             totallength = len(word) + 2
     print(" " * (lengthspace - (totallength)) + "#")
 
+# Print text from a list, each element of the list is printed on a new line
+def printTextFromList(List, Alinea = False):
+    for line in List:
+        printSentence(line, centered = False, Alinea = Alinea)
 # Print a title 
 def printTitle(sentence, centered = False):
     length = len(sentence) + 2
