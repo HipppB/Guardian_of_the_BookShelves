@@ -1,10 +1,11 @@
 import Basics as Ba
 
-def MenuEditor():
+def MenuEditor(text = ""):
+    if text = strin
     Text = []
     while True:
         Ba.line()
-        Ba.printTitle("GBE text editor")
+        Ba.printTitle("GBE text editor", centered=True)
         Ba.emptyLine()
         Ba.printSentence("From here, each action is definitive, the text is saved after each line modification")
         Ba.printSentence("The numbers are only here to display line Numbers, they won't appear in final text")
@@ -13,6 +14,7 @@ def MenuEditor():
         for i in range(0, len(Text)):
             Ba.printSentence(str(i) + " #" + Text[i])
         Ba.emptyLine()
+        Ba.line()
         Choices = ["New Line", "Delete Line", "Insert Line", "Modify Line", "Quit"]
         NumChoice = Ba.Choice(Choices)
         if NumChoice == 0:
@@ -22,6 +24,7 @@ def MenuEditor():
         elif NumChoice == 2:
             pass
         elif NumChoice == 3:
+            #Return a list of string ()
             return Text
 
 MenuEditor()
