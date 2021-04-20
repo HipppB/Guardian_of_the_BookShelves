@@ -20,7 +20,7 @@ def savePage(pageData):
 
   file = open(filePath, "w+")
   file.truncate(0)
-  json.dump(pageData, file)
+  json.dump(pageData, file, indent=2)
   file.close()
 
 def formatString(StringToFormat):
