@@ -1,0 +1,27 @@
+{
+  "ID": 0,
+  "title": "Book Description",
+  "Description": [
+    "You and your friends are the guardians of a famous magical library.",
+    "You soon realize that some evil charracters came out of the books and you have to stop them",
+    "Hello"
+  ],
+  "Book": "The gardians of the Bookshelves' Adventure copy",
+  "choices": {
+    "0": {
+      "Name": "Description of your book",
+      "Page": 0,
+      "GiveItem": [
+        "Shield",
+        "wooden sword"
+      ],
+      "TakeItem": []
+    },
+    "1": {
+      "Name": "Start",
+      "Page": 1,
+      "GiveItem": [],
+      "TakeItem": []
+    }
+  }
+}

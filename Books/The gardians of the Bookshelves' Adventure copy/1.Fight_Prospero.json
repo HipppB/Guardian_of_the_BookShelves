@@ -1,0 +1,20 @@
+{
+  "ID": 1,
+  "title": "Fight Prospero",
+  "Description": [
+    "You decided to fight Prospero! Bad idea! He attacks you with fire and your sword is ruined. Your adventure ends here!"
+  ],
+  "Book": "The gardians of the Bookshelves' Adventure copy",
+  "choices": {
+    "0": {
+      "Name": "Back to page 0",
+      "Page": 0,
+      "GiveItem": [
+        "Shield"
+      ],
+      "TakeItem": [
+        "end"
+      ]
+    }
+  }
+}

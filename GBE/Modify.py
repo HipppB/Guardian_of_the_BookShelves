@@ -1,8 +1,7 @@
 from GBE.Load import pageNumber
-from GBE import Load, Save
+from GBE import Load, Save, editor
 import os
 from GBE.Basics import printSentence, inputText, line
-
 
 def CreatePage(book):
     line()
@@ -57,4 +56,5 @@ def ChangePageName(LoadedPage, newName):
     return LoadedPage, pageFileName(LoadedPage)
 
 def ChangePageDescription(LoadedPage):
-    pass
+    LoadedPage["Description"] = editor.MenuEditor(LoadedPage["Description"])
+    return LoadedPage

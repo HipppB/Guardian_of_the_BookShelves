@@ -262,7 +262,7 @@ def menuViewPage(LoadedBook, Page):
             LoadedPage = NewData[0]
             Page[0] = NewData[1]
         elif NumChoice == 1:
-            pass
+            LoadedPage = Modify.ChangePageDescription(LoadedPage)
         elif NumChoice == 2:
             pass
         elif NumChoice == 3:
