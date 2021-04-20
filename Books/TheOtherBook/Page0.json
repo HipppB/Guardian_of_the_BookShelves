@@ -1,7 +1,7 @@
 {
   "ID": 0,
   "title": "string",
-  "description": "string",
+  "description": ["list of string"],
   "Book": "TheOtherBook",
   "choices": {
     "0": {

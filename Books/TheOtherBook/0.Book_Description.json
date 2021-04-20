@@ -1,7 +1,9 @@
 {
   "ID": 0,
   "title": "Book Description.",
-  "Description": "You and your friends are the guardians of a famous magical library. You soon realize that some evil charracters came out of the books and you have to stop them",
+  "Description": [
+    "You and your friends are the guardians of a famous magical library. You soon realize that some evil charracters came out of the books and you have to stop them"
+  ],
   "Book": "TheBook",
   "choices": {
     "0": {

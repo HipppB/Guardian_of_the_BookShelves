@@ -15,6 +15,15 @@ def emptyLine():
 
 #Print a sentence and go to line automatically
 def printSentence(sentence, centered = False, Alinea = False):
+    if isinstance(sentence, str):
+        printAString(sentence, centered, Alinea)
+    elif isinstance(sentence, list):
+        for line in sentence:
+            printAString(line, centered, Alinea)
+    else:
+        print("There is a Type issue, the Sentence can not be print")
+
+def printAString(sentence, centered = False, Alinea = False):
     sentence = sentence.replace("\n", " ||| ")
     words = sentence.split()
 

@@ -1,7 +1,7 @@
 {
   "ID": 1,
   "title": "page2",
-  "Description": "ceci est la deuxieme page ",
+  "Description": ["ceci est la deuxieme page "],
   "Book": "Hadouin",
   "choices": {}
 }

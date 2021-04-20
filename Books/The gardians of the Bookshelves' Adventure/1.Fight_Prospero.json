@@ -1,7 +1,9 @@
 {
   "ID": 1,
   "title": "Fight Prospero",
-  "Description": "You decided to fight Prospero! Bad idea! He attacks you with fire and your sword is ruined. Your adventure ends here!",
+  "Description": [
+    "You decided to fight Prospero! Bad idea! He attacks you with fire and your sword is ruined. Your adventure ends here!"
+  ],
   "Book": "The gardians of the Bookshelves' Adventure",
   "choices": {
     "0": {
