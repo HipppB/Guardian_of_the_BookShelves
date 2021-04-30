@@ -1,4 +1,6 @@
-from GBE import Basics as Ba, Menus as Me, Load
+from GBE import Basics as Ba
+from GBE import Load
+from GBE import Menus as Me
 
 def mainMenu():
     Ba.clear()
@@ -8,5 +10,3 @@ def mainMenu():
     Ba.printSentence("List of the books you can play :")
     ListBooks = Load.listBook()
     Me.ListTheBooks(ListBooks, Mode = "ID")
-    
-mainMenu()
