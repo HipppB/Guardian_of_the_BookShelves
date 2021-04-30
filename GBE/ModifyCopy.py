@@ -28,16 +28,16 @@ def createChoice(PageData):
 
 
 def deleteChoice(PageData):
-    choiceToRemove = str(Basics.inputText("ID of choice you want remove : "))
+    choiceToRemove = str(Ba.inputText("ID of choice you want remove : "))
     del PageData["choices"][choiceToRemove]
     return PageData
 
 
 def modifyChoice(PageData):
-    choiceToChange = Basics.inputText("ChoiceNumberToEdit :")
+    choiceToChange = Ba.inputText("ChoiceNumberToEdit :")
     choiceData = PageData["choices"][choiceToChange]
-    partToChange = Basics.inputText("Change Name, Page, GiveItem or TakeItem:")
-    valueToChange = Basics.inputText("Into what : ")
+    partToChange = Ba.inputText("Change Name, Page, GiveItem or TakeItem:")
+    valueToChange = Ba.inputText("Into what : ")
     if partToChange == "Page":
         valueToChange = int(valueToChange)
     choiceData[partToChange] = valueToChange
