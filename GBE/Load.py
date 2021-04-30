@@ -24,7 +24,7 @@ def listBook():
 
 def listPages(book):
     pageList = [[],[]]
-    fileList = sorted(os.listdir(os.path.join(get_project_root(), 'books', book)))
+    fileList = sorted(os.listdir(os.path.join(get_project_root(), 'Books', book)))
     for p in fileList:
         page = json.load(open(os.path.join(get_project_root(), 'Books', book, p)))
         pageList[0].append(p)
@@ -49,5 +49,3 @@ def listLinks(Book):
         for choice in PageData["choices"]:
             links.append([PageData["ID"], PageData["choices"][choice]["Name"], PageData["choices"][choice]["Page"]])
     return links
-
-listLinks("The gardians of the Bookshelves' Adventure")
