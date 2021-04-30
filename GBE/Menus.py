@@ -264,7 +264,7 @@ def menuViewPage(LoadedBook, Page):
         elif NumChoice == 1:
             LoadedPage = Modify.ChangePageDescription(LoadedPage)
         elif NumChoice == 2:
-            pass
+            LoadedPage = menuEditChoices(LoadedPage)
         elif NumChoice == 3:
             break
         # We save the page before leaving
@@ -284,3 +284,39 @@ def MenuDisplayLinks(LoadedBook):
     Ba.emptyLine()
     Ba.line()
     input("You can not modify page links from here, press enter to go back to previous menu")
+
+def menuEditChoices(LoadedPage):
+    while True:
+        Ba.clear()
+        Ba.line()
+        Ba.printTitle("Choices of " + LoadedPage['title'], centered=True)
+        Ba.emptyLine()
+        for key in LoadedPage["choices"]:
+            Ba.printSentence(str(key)+ "- " + LoadedPage["choices"][key]["Name"] + " -> Go to page " + str(LoadedPage["choices"][key]["Page"]))
+            Ba.printSentence("Gives :", Alinea=True)
+            if len(LoadedPage["choices"][key]["GiveItem"]) != 0:
+                for Item in LoadedPage["choices"][key]["GiveItem"]:
+                    Ba.printSentence("- " + Item, Alinea=True)
+            else:
+                Ba.printSentence("Nothing", Alinea=True)
+            Ba.printSentence("Takes  :", Alinea=True)
+            if len(LoadedPage["choices"][key]["TakeItem"]) != 0:
+                for Item in LoadedPage["choices"][key]["TakeItem"]:
+                    Ba.printSentence("- " + Item, Alinea=True)
+            else:
+                Ba.printSentence("Nothing", Alinea=True)
+        Ba.line()
+        listchoices = ["Create Choice", "Delete Choice", "Reset Choice", "Modify Choice", "Back"]
+        Ba.emptyLine()
+        NumChoice = Ba.Choice(listchoices)
+        if NumChoice == 0:
+            LoadedPage = Modify.createChoice(LoadedPage)
+        elif NumChoice == 1:
+            LoadedPage = Modify.deleteChoice(LoadedPage)
+        elif NumChoice == 2:
+            LoadedPage = Modify.resetChoiceID(LoadedPage)
+        elif NumChoice == 3:
+            LoadedPage = Modify.modifyChoice(LoadedPage)
+        elif NumChoice == 4:
+            break
+    return LoadedPage

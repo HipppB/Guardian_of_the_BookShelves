@@ -58,3 +58,45 @@ def ChangePageName(LoadedPage, newName):
 def ChangePageDescription(LoadedPage):
     LoadedPage["Description"] = editor.MenuEditor(LoadedPage["Description"])
     return LoadedPage
+
+
+# Choices :
+
+def resetChoiceID(PageData):
+    valueList = list(PageData["choices"].values())
+    PageData["choices"] = {}
+    for entry in valueList:
+        PageData["choices"][str(valueList.index(entry))] = entry
+    return PageData
+
+
+def createChoice(PageData):
+    newChoice = { "Name": "untitled", "Page": 0, "GiveItem": [], "TakeItem": [] }
+    numChoices = len(PageData["choices"])
+    PageData["choices"][numChoices] = newChoice
+    return PageData
+
+
+def deleteChoice(PageData):
+    choiceToRemove = str(inputText("ID of choice you want remove : "))
+    del PageData["choices"][int(choiceToRemove)]
+    return PageData
+
+
+def modifyChoice(PageData):
+    choiceToChange = inputText("ChoiceNumberToEdit :")
+    choiceData = PageData["choices"][int(choiceToChange)]
+    partToChange = inputText("Change Name, Page, GiveItem or TakeItem:")
+    if partToChange == "GiveItem" or partToChange == "TakeItem":
+        option = inputText('add or remove?')
+        item = inputText('Wich Item ?')
+        if option == "add":
+            choiceData[partToChange].append(item)
+        if option == "remove":
+            choiceData[partToChange].remove(item)
+        return PageData
+    valueToChange = inputText("Into what : ")
+    if partToChange == "Page":
+        valueToChange = int(valueToChange)
+    choiceData[partToChange] = valueToChange
+    return PageData
