@@ -37,9 +37,11 @@ def createFolder(bookName):
         os.makedirs(filePath)
 
 def DeleteFolder(bookName):
-  filePath = os.path.join(get_project_root(), 'Books', bookName)
-  if os.path.exists(filePath):
-    shutil.rmtree(filePath)
+    filePath = os.path.join(get_project_root(), 'Books', bookName)
+    try:
+        shutil.rmtree(filePath)
+    except:
+        raise
 
 def copyBook(bookName):
   filePath = os.path.join(get_project_root(), 'Books', bookName)
