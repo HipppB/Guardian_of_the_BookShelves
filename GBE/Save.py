@@ -18,10 +18,14 @@ def savePage(pageData):
 
   filePath = os.path.join(get_project_root(), 'Books', bookName, pageName)
 
-  file = open(filePath, "w+")
-  file.truncate(0)
-  json.dump(pageData, file, indent=2)
-  file.close()
+  try:
+      file = open(filePath, "w+")
+      file.truncate(0)
+      json.dump(pageData, file, indent=2)
+      file.close()
+  except IOError:
+      print("This page does not exist")
+      return None
 
 def formatString(StringToFormat):
   StringToFormat = StringToFormat.replace(" ", "_").replace(":", "")
