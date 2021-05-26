@@ -70,21 +70,21 @@ def resetChoiceID(PageData):
     return PageData
 
 
-def createChoice(PageData):
+def createChoice(PageData, newChoice):
     newChoice = { "Name": "untitled", "Page": 0, "GiveItem": [], "TakeItem": [] }
     numChoices = len(PageData["choices"])
     PageData["choices"][numChoices] = newChoice
     return PageData
 
 
-def deleteChoice(PageData):
-    choiceToRemove = str(inputText("ID of choice you want remove : "))
-    del PageData["choices"][int(choiceToRemove)]
+def deleteChoice(PageData, choiceToRemove):
+    del PageData["choices"][choiceToRemove]
     return PageData
 
 
 def modifyChoice(PageData):
     choiceToChange = inputText("ChoiceNumberToEdit :")
+    print(PageData["choices"])
     choiceData = PageData["choices"][int(choiceToChange)]
     partToChange = inputText("Change Name, Page, GiveItem or TakeItem:")
     if partToChange == "GiveItem" or partToChange == "TakeItem":
