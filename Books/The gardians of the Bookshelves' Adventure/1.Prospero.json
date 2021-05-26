@@ -18,5 +18,6 @@
       "GiveItem": ["wooden sword"],
       "TakeItem": ["Shield"]
     }
-  }
+  },
+  "end": false
 }

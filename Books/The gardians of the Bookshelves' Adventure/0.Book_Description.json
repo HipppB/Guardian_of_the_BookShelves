@@ -8,11 +8,11 @@
   "Book": "The gardians of the Bookshelves' Adventure",
   "choices": {
     "0": {
-      "Name": "Description of your book",
-      "Page": 0,
-      "GiveItem": ["Shield", "wooden sword"],
+      "Name": "Start Your Adventure",
+      "Page": 1,
+      "GiveItem": ["wooden sword", "Shield"],
       "TakeItem": []
-    },
-    "1": { "Name": "Start", "Page": 1, "GiveItem": [], "TakeItem": [] }
-  }
+    }
+  },
+  "end": false
 }
