@@ -25,6 +25,7 @@ def CreateBlankPage(book, desc, title=""):
     loadPage["Description"] = desc
     loadPage["Book"] = book
     loadPage["choices"]= {}
+    loadPage["end"]= True
     line()
     return loadPage
 
