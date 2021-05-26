@@ -187,7 +187,7 @@ def menuListPages(LoadedBook, Mode= "List"):
         
 
     elif Mode == "Modify":
-        Ba.printTitle("Select a page to Modify" + LoadedBook , True)
+        Ba.printTitle("Select a page to Modify " + LoadedBook , True)
         Ba.emptyLine()
         Ba.line()
         i = 0
@@ -203,16 +203,18 @@ def menuListPages(LoadedBook, Mode= "List"):
 
     elif Mode == "Delete":
         Ba.printTitle("Select a page to delete" + LoadedBook , True)
-        Ba.printTitle("/!\\ Cannot be deleted ! /!\\" + LoadedBook , True)
+        Ba.printTitle("/!\\ Definitive Action ! /!\\" , True)
         Ba.emptyLine()
         Ba.line()
+        
         for Page in ListPage[1]:
-            Ba.printSentence("- " + Page)   
-        NumChoice = Ba.inputText(textBefore="Enter the name of the page you want to delete : ", FromList= ListPage[1])
-        #Call the delete function with parameter "page" to delete a page
-       
-        Modify.deletePage(LoadedBook, ListPage[1].index(NumChoice))
-
+            Ba.printSentence("- " + Page)
+        if len(ListPage[1]) == 0:
+            Ba.printSentence("No Page In this Book, press Enter to go back.")
+            input()
+        else:
+            NumChoice = Ba.inputText(textBefore="Enter the name of the page you want to delete : ", FromList= ListPage[1], verification=True)
+            Modify.deletePage(LoadedBook, ListPage[1].index(NumChoice))
 
     Ba.emptyLine()
     Ba.line()
@@ -320,6 +322,8 @@ def menuEditChoices(LoadedPage):
             break
         #We rearrange all Choices ID not to skip any numbers due to modifications like deleting a choice
         LoadedPage = Modify.resetChoiceID(LoadedPage)
+        #We save the page Before Leaving
+        Save.savePage(LoadedPage)
     return LoadedPage
 
 def menuCreateChoice(LoadedPage):
@@ -328,8 +332,8 @@ def menuCreateChoice(LoadedPage):
     Ba.printTitle("Creation of a new Choice in " + LoadedPage['title'], centered=True)
     Ba.emptyLine()
     NewChoice = {"Name": "Untitled", "Page": 0, "GiveItem": [], "TakeItem": []}
-    NewChoice["Name"] = Ba.inputText("Name of the Choixe", maxlenght=20)
-    RangePage = range(0, Load.listPages(LoadedPage["Book"]))
+    NewChoice["Name"] = Ba.inputText("Name of the Choice", maxlenght=20)
+    RangePage = range(0, len(Load.listPages(LoadedPage["Book"])) - 1)
     NewChoice["Page"] = Ba.inputNumber(textBefore="Where does the choice leads to ? Enter the page number", rangeNumber=RangePage)
     LoadedPage = Modify.createChoice(LoadedPage, NewChoice)
     return LoadedPage
