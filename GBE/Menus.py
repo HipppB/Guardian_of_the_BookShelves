@@ -306,17 +306,60 @@ def menuEditChoices(LoadedPage):
             else:
                 Ba.printSentence("Nothing", Alinea=True)
         Ba.line()
-        listchoices = ["Create Choice", "Delete Choice", "Reset Choice", "Modify Choice", "Back"]
+        listchoices = ["Create Choice", "Delete Choice" , "Modify Choice", "Back"]
         Ba.emptyLine()
         NumChoice = Ba.Choice(listchoices)
         if NumChoice == 0:
-            LoadedPage = Modify.createChoice(LoadedPage)
+            #Just add a choice !
+            LoadedPage = menuCreateChoice(LoadedPage)
         elif NumChoice == 1:
-            LoadedPage = Modify.deleteChoice(LoadedPage)
+            LoadedPage = menuDeleteChoice(LoadedPage)
         elif NumChoice == 2:
-            LoadedPage = Modify.resetChoiceID(LoadedPage)
-        elif NumChoice == 3:
             LoadedPage = Modify.modifyChoice(LoadedPage)
-        elif NumChoice == 4:
+        elif NumChoice == 3:
             break
+        #We rearrange all Choices ID not to skip any numbers due to modifications like deleting a choice
+        LoadedPage = Modify.resetChoiceID(LoadedPage)
     return LoadedPage
+
+def menuCreateChoice(LoadedPage):
+    Ba.clear()
+    Ba.line()
+    Ba.printTitle("Creation of a new Choice in " + LoadedPage['title'], centered=True)
+    Ba.emptyLine()
+    NewChoice = {"Name": "Untitled", "Page": 0, "GiveItem": [], "TakeItem": []}
+    NewChoice["Name"] = Ba.inputText("Name of the Choixe", maxlenght=20)
+    RangePage = range(0, Load.listPages(LoadedPage["Book"]))
+    NewChoice["Page"] = Ba.inputNumber(textBefore="Where does the choice leads to ? Enter the page number", rangeNumber=RangePage)
+    LoadedPage = Modify.createChoice(LoadedPage, NewChoice)
+    return LoadedPage
+
+def menuDeleteChoice(LoadedPage):
+    Ba.clear()
+    Ba.line()
+    Ba.printTitle("Delete a choice of " + LoadedPage['title'], centered=True)
+    Ba.emptyLine()
+    listchoices = []
+    for key in LoadedPage["choices"]:
+        listchoices.append(LoadedPage["choices"][key]["Name"])
+        Ba.printSentence("- " + LoadedPage["choices"][key]["Name"] + " -> Go to page " + str(LoadedPage["choices"][key]["Page"]))
+        Ba.printSentence("Gives :", Alinea=True)
+        if len(LoadedPage["choices"][key]["GiveItem"]) != 0:
+            for Item in LoadedPage["choices"][key]["GiveItem"]:
+                Ba.printSentence("- " + Item, Alinea=True)
+        else:
+            Ba.printSentence("Nothing", Alinea=True)
+        Ba.printSentence("Takes  :", Alinea=True)
+        if len(LoadedPage["choices"][key]["TakeItem"]) != 0:
+            for Item in LoadedPage["choices"][key]["TakeItem"]:
+                Ba.printSentence("- " + Item, Alinea=True)
+        else:
+            Ba.printSentence("Nothing", Alinea=True)
+    Ba.emptyLine()
+    if len(listchoices) == 0:
+        print("There is no choice to delete.")
+    else:
+        ChoiceToDelete = Ba.inputText("Input the choice NAME you want to delete : ", verification= True, FromList=listchoices)
+        Modify.deleteChoice(LoadedPage, listchoices.index(ChoiceToDelete))
+    return LoadedPage
+
