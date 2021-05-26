@@ -1,7 +1,7 @@
+import os
 from GBE.Load import pageNumber
 from GBE import Load, Save, editor
-import os
-from GBE.Basics import printSentence, inputText, line
+from GBE.Basics import inputNumber, printSentence, inputText, line
 
 def CreatePage(book):
     line()
@@ -70,33 +70,39 @@ def resetChoiceID(PageData):
     return PageData
 
 
-def createChoice(PageData, newChoice):
-    newChoice = { "Name": "untitled", "Page": 0, "GiveItem": [], "TakeItem": [] }
+def createChoice(PageData, newChoice = { "Name": "untitled", "Page": 0, "GiveItem": [], "TakeItem": [] }):
     numChoices = len(PageData["choices"])
     PageData["choices"][numChoices] = newChoice
     return PageData
 
 
 def deleteChoice(PageData, choiceToRemove):
-    del PageData["choices"][choiceToRemove]
+    del PageData["choices"][str(choiceToRemove)]
     return PageData
 
 
 def modifyChoice(PageData):
     choiceToChange = inputText("ChoiceNumberToEdit :")
     print(PageData["choices"])
-    choiceData = PageData["choices"][int(choiceToChange)]
-    partToChange = inputText("Change Name, Page, GiveItem or TakeItem:")
+    #The key is not an Int !
+    choiceData = PageData["choices"][choiceToChange]
+    partToChange = inputText("Change Name, Page, GiveItem or TakeItem:", FromList=["Name", "Page", "GiveItem", "TakeItem"])
     if partToChange == "GiveItem" or partToChange == "TakeItem":
-        option = inputText('add or remove?')
-        item = inputText('Wich Item ?')
+        option = inputText('Do you want to add or remove an item (add/remove)?', FromList=["add", "remove"])
+        item = inputText('Which Item ?')
+        
         if option == "add":
             choiceData[partToChange].append(item)
         if option == "remove":
-            choiceData[partToChange].remove(item)
+            try:
+                choiceData[partToChange].remove(item)
+            except:
+                printSentence("Their is no such Item. Passing. Press Enter to continue")
+                input()
         return PageData
-    valueToChange = inputText("Into what : ")
-    if partToChange == "Page":
-        valueToChange = int(valueToChange)
+    elif partToChange == "Page":
+        valueToChange = inputNumber(range(0, len(Load.listPages(PageData["Book"])) - 1), "Enter New Page Number")
+    else:
+        valueToChange = inputText("Into what : ")
     choiceData[partToChange] = valueToChange
     return PageData
