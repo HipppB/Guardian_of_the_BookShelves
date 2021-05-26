@@ -160,7 +160,7 @@ def menuEditBook(LoadedBook):
         elif NumChoice == 4:
             break
         else:
-            print("Their was a problem !")
+            print("There was a problem !")
             
 # Sous menu Edit Book
 
@@ -203,13 +203,14 @@ def menuListPages(LoadedBook, Mode= "List"):
 
     elif Mode == "Delete":
         Ba.printTitle("Select a page to delete" + LoadedBook , True)
-        Ba.printTitle("/!\\ Cannot be delete ! /!\\" + LoadedBook , True)
+        Ba.printTitle("/!\\ Cannot be deleted ! /!\\" + LoadedBook , True)
         Ba.emptyLine()
         Ba.line()
         for Page in ListPage[1]:
             Ba.printSentence("- " + Page)   
         NumChoice = Ba.inputText(textBefore="Enter the name of the page you want to delete : ", FromList= ListPage[1])
         #Call the delete function with parameter "page" to delete a page
+       
         Modify.deletePage(LoadedBook, ListPage[1].index(NumChoice))
 
 

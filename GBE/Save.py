@@ -18,10 +18,14 @@ def savePage(pageData):
 
   filePath = os.path.join(get_project_root(), 'Books', bookName, pageName)
 
-  file = open(filePath, "w+")
-  file.truncate(0)
-  json.dump(pageData, file, indent=2)
-  file.close()
+  try:
+      file = open(filePath, "w+")
+      file.truncate(0)
+      json.dump(pageData, file, indent=2)
+      file.close()
+  except IOError:
+      print("This page does not exist")
+      return None
 
 def formatString(StringToFormat):
   StringToFormat = StringToFormat.replace(" ", "_").replace(":", "")
@@ -33,9 +37,11 @@ def createFolder(bookName):
         os.makedirs(filePath)
 
 def DeleteFolder(bookName):
-  filePath = os.path.join(get_project_root(), 'Books', bookName)
-  if os.path.exists(filePath):
-    shutil.rmtree(filePath)
+    filePath = os.path.join(get_project_root(), 'Books', bookName)
+    try:
+        shutil.rmtree(filePath)
+    except:
+        raise
 
 def copyBook(bookName):
   filePath = os.path.join(get_project_root(), 'Books', bookName)

@@ -11,11 +11,17 @@ def get_project_root() -> Path:
 
 def loadBook(book):
     Books = []
-    fileList = os.listdir(os.path.join(get_project_root(), 'Books', book))
-    for p in fileList:
-        page = json.load(open(os.path.join(get_project_root(), 'Books', book, p)))
-        Books.append(page)
-    return Books
+    try:
+        fileList = os.listdir(os.path.join(get_project_root(), 'Books', book))
+        for p in fileList:
+            page = json.load(open(os.path.join(get_project_root(), 'Books', book, p)))
+            Books.append(page)
+        return Books
+    except IOError:
+        print("Book not accessible")
+        return None
+
+
 
 def listBook():
     bookList = []
@@ -36,8 +42,12 @@ def listPages(book):
     # [["0.PageName1.json", "1.PageName2.json"]["PageName1", "PageName2"]]
 
 def loadPage(book, page):
-    Page = json.load(open(os.path.join(get_project_root(), 'Books', book, page)))
-    return Page
+    try:
+        Page = json.load(open(os.path.join(get_project_root(), 'Books', book, page)))
+        return Page
+    except IOError:
+        print("This page does not exist")
+        return None
     # Dictionnary of the page in python format
 
 def pageNumber(book):
