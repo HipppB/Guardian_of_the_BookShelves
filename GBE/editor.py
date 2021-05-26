@@ -1,11 +1,12 @@
 import GBE.Basics as Ba
 
-def MenuEditor(text = ""):
-    Text = []
-    if isinstance(text, list):
-        Text = text
-    else:
-        Text.append(str(text))
+#Can receive, list, string, integers returns list
+def MenuEditor(Text):
+    if Text == None:
+        Text = []
+    if not isinstance(Text, list):
+        Text = [Text]
+
     while True:
         Ba.clear()
         Ba.line()
