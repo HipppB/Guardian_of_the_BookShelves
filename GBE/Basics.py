@@ -109,10 +109,12 @@ def inputText(textBefore= "", maxlenght = 500, verification = False, typeInput="
 
 # Input a Number in or not in a given range:
 
-def inputNumber(rangeNumber = None):
+def inputNumber(rangeNumber, textBefore = None):
+    if textBefore == None:
+        textBefore= "Enter an integer :"
     while True:
         try:
-            number = int(inputText(textBefore= "Enter an integer :", verification = False))
+            number = int(inputText(textBefore= textBefore, verification = False))
             if rangeNumber != None:
                 if number in rangeNumber:
                     return number
