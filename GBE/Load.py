@@ -2,6 +2,9 @@ import os
 from pathlib import Path
 import json
 
+ # Manage exeption
+
+
 def get_project_root() -> Path:
     return Path(__file__).parent.parent
     # renvoie au chemin du dossier racine on l'utilise dans tous les acces au fichiers
