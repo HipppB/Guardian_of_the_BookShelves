@@ -23,6 +23,7 @@ def loadBook(book):
 
 
 
+
 def listBook():
     bookList = []
     fileList = os.listdir(os.path.join(get_project_root(), 'Books'))
@@ -62,3 +63,11 @@ def listLinks(Book):
         for choice in PageData["choices"]:
             links.append([PageData["ID"], PageData["choices"][choice]["Name"], PageData["choices"][choice]["Page"]])
     return links
+
+def getArgument(book, page, argument):
+    page = loadPage(book, page)
+    try:
+        research = page[argument]
+        return research
+    except IOError:
+        return None
