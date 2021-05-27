@@ -1,0 +1,31 @@
+{
+  "ID": 1,
+  "title": "Prospero",
+  "Description": [
+    "Prospero came out of Shakespear's book and need his staff to take over the world and spread misery! When he comes out, you see him! what do you decide to do"
+  ],
+  "Book": "The gardians of the Bookshelves' Adventure copy",
+  "choices": {
+    "0": {
+      "Name": "Fight him with a wooden sword",
+      "Page": 2,
+      "GiveItem": [
+        "Shield"
+      ],
+      "TakeItem": [
+        "wooden sword"
+      ]
+    },
+    "1": {
+      "Name": "Run away and protect yourself with the shield",
+      "Page": 3,
+      "GiveItem": [
+        "wooden sword"
+      ],
+      "TakeItem": [
+        "Shield"
+      ]
+    }
+  },
+  "end": false
+}
