@@ -133,6 +133,8 @@ def menuCreatePage(LoadedBook):
 def menuEditPage(LoadedPage):
     Ba.clear()
     Ba.line
+
+
 def menuEditBook(LoadedBook):
     while True:
         Ba.clear()
@@ -144,7 +146,15 @@ def menuEditBook(LoadedBook):
         Ba.emptyLine()
         ListPage = Load.listPages(LoadedBook)
         Ba.printSentence("Pages in this book :")
-        ListTheBooks(ListPage[1], Mode = "List")
+
+        ##
+        #
+        #   Changer la methode de listing des pages
+        #
+        ##
+        ListAllPages(LoadedBook)
+
+
         Ba.emptyLine()
         Ba.line()
         listchoices = ["Create page", "Delete a Page", "Modify a Page", "See Links between page", "Quit"]
@@ -161,7 +171,24 @@ def menuEditBook(LoadedBook):
             break
         else:
             print("There was a problem !")
-            
+
+# Fonction pour List Page
+
+
+def ListAllPages(LoadedBook, Mode= "List"):
+    ListPage = Load.listPages(LoadedBook)
+    for page in ListPage[1]:
+        Disp = page
+        if Mode != "Delete":
+            ending = Load.getArgument(LoadedBook, ListPage[0][ListPage[1].index(page)], "end")
+            if ending:
+                Disp = page + " [END]"
+        if Mode != "Edit":
+            Ba.printSentence("- " + Disp)
+        else:
+            Ba.printSentence(str(ListPage[1].index(page)) + ". " + Disp)            
+
+    return
 # Sous menu Edit Book
 
 def menuListPages(LoadedBook, Mode= "List"):
@@ -172,8 +199,7 @@ def menuListPages(LoadedBook, Mode= "List"):
         Ba.printTitle("List of all pages" + LoadedBook , True)
         Ba.emptyLine()
         Ba.line()
-        for Page in ListPage[1]:
-            Ba.printSentence("- " + Page)
+        ListAllPages(LoadedBook, Mode= "List")
         listchoices = ["Modify a Page", "Delete a Page", "Quit"]
         Ba.emptyLine()
         Ba.line()
@@ -190,13 +216,9 @@ def menuListPages(LoadedBook, Mode= "List"):
         Ba.printTitle("Select a page to Modify " + LoadedBook , True)
         Ba.emptyLine()
         Ba.line()
-        i = 0
-        for Page in ListPage[1]:
-            Ba.printSentence(str(i) +". " + Page)
-            i += 1
+        ListAllPages(LoadedBook, Mode= "Edit")
         Ba.emptyLine()
-        
-        NumChoice = Ba.inputNumber(range(0, i + 1))
+        NumChoice = Ba.inputNumber(range(0, len(ListPage[1])))
         menuViewPage(LoadedBook, [ListPage[0][NumChoice],ListPage[1][NumChoice]])
         Ba.line()
 
@@ -207,14 +229,16 @@ def menuListPages(LoadedBook, Mode= "List"):
         Ba.emptyLine()
         Ba.line()
         
-        for Page in ListPage[1]:
-            Ba.printSentence("- " + Page)
+        ListAllPages(LoadedBook, Mode= "Delete")
         if len(ListPage[1]) == 0:
             Ba.printSentence("No Page In this Book, press Enter to go back.")
             input()
         else:
             NumChoice = Ba.inputText(textBefore="Enter the name of the page you want to delete : ", FromList= ListPage[1], verification=True)
-            Modify.deletePage(LoadedBook, ListPage[1].index(NumChoice))
+            try:
+                Modify.deletePage(LoadedBook, ListPage[1].index(NumChoice))
+            except:
+                Ba.printSentence("Failed. Exiting.")
 
     Ba.emptyLine()
     Ba.line()
