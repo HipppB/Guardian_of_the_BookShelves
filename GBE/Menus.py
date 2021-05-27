@@ -10,10 +10,12 @@ def mainMenu():
         Ba.printSentence("From here you can modify, create and list all the books that have been created and that are in the file system !")
         Ba.emptyLine()
         Ba.printSentence("List of your books :")
+        
         ListBooks = Load.listBook()
         ListTheBooks(ListBooks, Mode = "List")
         Ba.emptyLine()
-        #Mettre la liste des livres ici
+        Ba.emptyLine()
+        Ba.printSentence("Books which are marked as not finished have Pages which are not accessible or links that can not be used")
         Ba.line()
         listchoices = ["Create Book", "Edit Book", "Delete Book", "Duplicate Book", "Quit Program"]
         NumChoice = Ba.Choice(listchoices)
@@ -97,11 +99,15 @@ def menuDeleteBook(ListBooks):
 def ListTheBooks(ListBooks, Mode = "List"):
     i = 0
     for Book in ListBooks:
+        if not Load.isBookFinished(Book):
+            finished = " [Not Finished]"
+        else:
+            finished = ""
         if Mode == "ID":
-            Ba.printSentence(str(i) +". " + Book)
+            Ba.printSentence(str(i) +". " + Book + finished)
             i += 1
         if Mode == "List":
-            Ba.printSentence("- " + Book)
+            Ba.printSentence("- " + Book + finished)
 
 def menuCreateNewBook():
     Ba.clear()

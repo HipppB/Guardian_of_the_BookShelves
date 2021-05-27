@@ -53,14 +53,59 @@ def pageNumber(book):
     num = len(listPages(book)[1])
     return num
 
-def listLinks(Book):
-    links = []
+def listLinks(Book, advanced = None):
+    if advanced == None:
+        links = []
+    else:
+        links = {}
+
     ListofPages = listPages(Book)
     for page in ListofPages[0]:
+        
         PageData = loadPage(Book, page)
+        if advanced != None:
+            links[PageData["ID"]] = []
         for choice in PageData["choices"]:
-            links.append([PageData["ID"], PageData["choices"][choice]["Name"], PageData["choices"][choice]["Page"]])
+            if advanced == None:
+                links.append([PageData["ID"], PageData["choices"][choice]["Name"], PageData["choices"][choice]["Page"]])
+            else:
+                links[PageData["ID"]].append(PageData["choices"][choice]["Page"])
     return links
+    # [ [PageID, ChoiceName, Page Direction], [PageID, ChoiceName, Page Direction]]
+
+
+# A book is considered as finish if all path can lead to an end page and if all pages are accessible
+# Their must be no loops (A page can be visited only once)
+# A non finish book can be launch but is indicated
+def isBookFinished(Book):
+    #Let's get all the links between page
+    links = listLinks(Book, " ")
+    #print(links)
+    travelDone = {}
+    #print(len(listPages(Book)[1]))
+    #print(travelDone)
+    def analyseTravel(pageNum):
+        if pageNum not in travelDone:
+            travelDone[pageNum] = []
+        if len(links[pageNum]) != 0:
+            for pageNumDest in links[pageNum]:
+                # If we haven't made the test we do it
+                if not pageNumDest in travelDone[pageNum]:
+                    if travelDone[pageNum]:
+                        travelDone[pageNum].append(pageNumDest)
+                    else:
+                        travelDone[pageNum] = [pageNumDest]
+                    analyseTravel(pageNumDest)
+        #if len(links[pageNum]) == 0:
+            #print("There is an end in page", pageNum)
+    
+    analyseTravel(0)
+    #print(travelDone)
+
+    if links != travelDone:
+        return False
+    else:
+        return True
 
 def getArgument(book, page, argument):
     page = loadPage(book, page)
@@ -69,3 +114,5 @@ def getArgument(book, page, argument):
         return research
     except IOError:
         return None
+
+
