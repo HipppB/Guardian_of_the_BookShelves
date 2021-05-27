@@ -278,6 +278,12 @@ def menuViewPage(LoadedBook, Page):
                     Ba.printSentence("- " + Item, Alinea=True)
             else:
                 Ba.printSentence("Nothing", Alinea=True)
+        if len(LoadedPage["choices"]) == 0:
+            Ba.printSentence("No Choice defined, this page will be an End Page")
+
+        Ba.emptyLine()
+        Ba.printSentence("End Page : ")
+
         listchoices = ["Modify Name", "Modify Description", "Modify Choices", "Back"]
         Ba.emptyLine()
         Ba.line()
