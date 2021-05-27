@@ -146,28 +146,25 @@ def menuEditBook(LoadedBook):
         Ba.emptyLine()
         ListPage = Load.listPages(LoadedBook)
         Ba.printSentence("Pages in this book :")
-
-        ##
-        #
-        #   Changer la methode de listing des pages
-        #
-        ##
         ListAllPages(LoadedBook)
-
 
         Ba.emptyLine()
         Ba.line()
-        listchoices = ["Create page", "Delete a Page", "Modify a Page", "See Links between page", "Quit"]
+        listchoices = ["Change Book Name", "Create page", "Delete a Page", "Modify a Page", "See Links between page", "Quit"]
         NumChoice = Ba.Choice(listchoices)
         if NumChoice == 0:
-            menuCreatePage(LoadedBook)
+            NewBookName = Ba.inputText(typeInput="title", maxlenght=30, textBefore="Enter the new title of the book :")
+            menuEditBook(Save.changeBookName(LoadedBook, NewBookName))
+            break
         elif NumChoice == 1:
-            menuListPages(LoadedBook, Mode= "Delete")
+            menuCreatePage(LoadedBook)
         elif NumChoice == 2:
-            menuListPages(LoadedBook, Mode= "Modify")
+            menuListPages(LoadedBook, Mode= "Delete")
         elif NumChoice == 3:
-            MenuDisplayLinks(LoadedBook)
+            menuListPages(LoadedBook, Mode= "Modify")
         elif NumChoice == 4:
+            MenuDisplayLinks(LoadedBook)
+        elif NumChoice == 5:
             break
         else:
             print("There was a problem !")
@@ -278,13 +275,18 @@ def menuViewPage(LoadedBook, Page):
                     Ba.printSentence("- " + Item, Alinea=True)
             else:
                 Ba.printSentence("Nothing", Alinea=True)
+
+        listchoices = ["Modify Name", "Modify Description", "Modify Choices", "Toggle End", "Back"]
         if len(LoadedPage["choices"]) == 0:
-            Ba.printSentence("No Choice defined, this page will be an End Page")
+            Ba.printSentence("No Choice defined, this page as been set as an End Page. Add Choices to change it.")
+            listchoices.remove("Toggle End")
+            #Force Change
+            LoadedPage["end"] = True
+            
 
         Ba.emptyLine()
-        Ba.printSentence("End Page : ")
+        Ba.printSentence("End Page : " + str(LoadedPage["end"]))
 
-        listchoices = ["Modify Name", "Modify Description", "Modify Choices", "Back"]
         Ba.emptyLine()
         Ba.line()
         NumChoice = Ba.Choice(listchoices)
@@ -297,7 +299,10 @@ def menuViewPage(LoadedBook, Page):
             LoadedPage = Modify.ChangePageDescription(LoadedPage)
         elif NumChoice == 2:
             LoadedPage = menuEditChoices(LoadedPage)
-        elif NumChoice == 3:
+        elif NumChoice == 3 and len(listchoices) == 5:
+            LoadedPage["end"] = not LoadedPage["end"]
+        elif NumChoice == len(listchoices) - 1:
+            Save.savePage(LoadedPage)
             break
         # We save the page before leaving
         Save.savePage(LoadedPage)
@@ -321,7 +326,7 @@ def menuEditChoices(LoadedPage):
     while True:
         Ba.clear()
         Ba.line()
-        Ba.printTitle("Choices of " + LoadedPage['title'], centered=True)
+        Ba.printTitle("Choices of page " + LoadedPage['title'], centered=True)
         Ba.emptyLine()
         for key in LoadedPage["choices"]:
             Ba.printSentence(str(key)+ "- " + LoadedPage["choices"][key]["Name"] + " -> Go to page " + str(LoadedPage["choices"][key]["Page"]))
@@ -337,9 +342,11 @@ def menuEditChoices(LoadedPage):
                     Ba.printSentence("- " + Item, Alinea=True)
             else:
                 Ba.printSentence("Nothing", Alinea=True)
+
+        Ba.emptyLine()
         Ba.line()
         listchoices = ["Create Choice", "Delete Choice" , "Modify Choice", "Back"]
-        Ba.emptyLine()
+        
         NumChoice = Ba.Choice(listchoices)
         if NumChoice == 0:
             #Just add a choice !

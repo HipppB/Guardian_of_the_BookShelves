@@ -55,3 +55,22 @@ def copyBook(bookName):
     loadedPage = Load.loadPage(bookName, Page)
     loadedPage["Book"] = bookName
     savePage(loadedPage)
+
+def changeBookName(BookName, NewBookName):
+  filePath = os.path.join(get_project_root(), 'Books', BookName)
+  filePath2 = os.path.join(get_project_root(), 'Books', NewBookName)
+  while os.path.exists(filePath2):
+    NewBookName = input("This Book Name already exists, pleae choose another name : ")
+    filePath2 = os.path.join(get_project_root(), 'Books', BookName)
+  #Copy the book
+  shutil.copytree(filePath, filePath2)
+  #Change Book pages
+  for Page in Load.listPages(NewBookName)[0]:
+    loadedPage = Load.loadPage(NewBookName, Page)
+    loadedPage["Book"] = NewBookName
+    savePage(loadedPage)
+  #Delete Old Book
+  DeleteFolder(BookName)
+
+  #Returns the New Book Name
+  return NewBookName

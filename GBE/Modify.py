@@ -12,6 +12,7 @@ def CreatePage(book):
     loadPage["Description"] = inputText(textBefore= "Enter the description : ", maxlenght = 500, verification = False)
     loadPage["Book"] = book
     loadPage["choices"]={}
+    loadPage["end"] = True
     line()
     return loadPage
 
@@ -102,7 +103,8 @@ def modifyChoice(PageData):
                 input()
         return PageData
     elif partToChange == "Page":
-        valueToChange = inputNumber(range(0, len(Load.listPages(PageData["Book"])) - 1), "Enter New Page Number")
+
+        valueToChange = inputNumber(range(0, len(Load.listPages(PageData["Book"])) + 1), "Enter New Page Number")
     else:
         valueToChange = inputText("Into what : ")
     choiceData[partToChange] = valueToChange

@@ -22,8 +22,6 @@ def loadBook(book):
         return None
 
 
-
-
 def listBook():
     bookList = []
     fileList = os.listdir(os.path.join(get_project_root(), 'Books'))
