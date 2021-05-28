@@ -9,6 +9,7 @@ def mainMenu():
 def BookMenu(LoadedBook):
     Ba.clear()
     Ba.line()
+<<<<<<< Updated upstream
     Ba.printTitle(LoadedBook["title"])
     pass
     while True:
@@ -29,3 +30,25 @@ def BookMenu(LoadedBook):
             LoadedBook = {}
         if NumChoice == 1:
             break
+=======
+    Ba.printTitle("Please select a book to read", centered=True)
+    Ba.emptyLine()
+    Ba.printSentence("List of the books you can play :")
+    ListBooks = Load.listBook()
+    Me.ListTheBooks(ListBooks, Mode = "ID")
+
+def PageMenu(Page):
+    Ba.clear()
+    Ba.line()
+    Ba.printTitle(Page['title'], centered=True)
+    Ba.emptyLine()
+    Ba.printSentence((Page['Description']))
+    Ba.emptyLine()
+    Ba.line()
+
+    listChoicePage = [Page['choices'][str(i)]['Name'] for i in Page['choices']]
+    choice = Ba.Choice(listChoicePage)
+    Ba.line()
+
+    newPage = Load.loadPage(Page['Book'], pageList(choice))
+>>>>>>> Stashed changes
