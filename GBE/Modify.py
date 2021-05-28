@@ -85,7 +85,6 @@ def deleteChoice(PageData, choiceToRemove):
 
 def modifyChoice(PageData):
     choiceToChange = inputText("ChoiceNumberToEdit :")
-    print(PageData["choices"])
     #The key is not an Int !
     choiceData = PageData["choices"][choiceToChange]
     partToChange = inputText("Change Name, Page, GiveItem or TakeItem:", FromList=["Name", "Page", "GiveItem", "TakeItem"])
