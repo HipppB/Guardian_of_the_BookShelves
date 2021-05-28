@@ -60,7 +60,7 @@ def changeBookName(BookName, NewBookName):
   filePath = os.path.join(get_project_root(), 'Books', BookName)
   filePath2 = os.path.join(get_project_root(), 'Books', NewBookName)
   while os.path.exists(filePath2):
-    NewBookName = input("This Book Name already exists, pleae choose another name : ")
+    NewBookName = input("This Book Name already exists, please choose another name : ")
     filePath2 = os.path.join(get_project_root(), 'Books', BookName)
   #Copy the book
   shutil.copytree(filePath, filePath2)
