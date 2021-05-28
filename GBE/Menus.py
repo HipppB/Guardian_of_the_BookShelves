@@ -328,7 +328,7 @@ def MenuDisplayLinks(LoadedBook):
     Ba.line()
     input("You can not modify page links from here, press enter to go back to previous menu")
 
-def menuEditChoices(LoadedPage):
+def menuEditChoices(LoadedPage, Mode=None):
     while True:
         Ba.clear()
         Ba.line()
@@ -376,7 +376,8 @@ def menuCreateChoice(LoadedPage):
     Ba.emptyLine()
     NewChoice = {"Name": "Untitled", "Page": 0, "GiveItem": [], "TakeItem": []}
     NewChoice["Name"] = Ba.inputText("Name of the Choice", maxlenght=20)
-    RangePage = range(0, len(Load.listPages(LoadedPage["Book"])[0]) - 1)
+    RangePage = range(0, len(Load.listPages(LoadedPage["Book"])[0]))
+    print(RangePage)
     NewChoice["Page"] = Ba.inputNumber(textBefore="Where does the choice leads to ? Enter the page number", rangeNumber=RangePage)
     LoadedPage = Modify.createChoice(LoadedPage, NewChoice)
     return LoadedPage
@@ -410,3 +411,4 @@ def menuDeleteChoice(LoadedPage):
         Modify.deleteChoice(LoadedPage, listchoices.index(ChoiceToDelete))
     return LoadedPage
 
+#def menuModifyChoice(PageData)

@@ -103,8 +103,9 @@ def modifyChoice(PageData):
                 input()
         return PageData
     elif partToChange == "Page":
-
-        valueToChange = inputNumber(range(0, len(Load.listPages(PageData["Book"])) + 1), "Enter New Page Number")
+        RangePage = range(0, len(Load.listPages(PageData["Book"])[0]))
+        print(RangePage)
+        valueToChange = inputNumber(RangePage, "Enter New Page Number")
     else:
         valueToChange = inputText("Into what : ")
     choiceData[partToChange] = valueToChange
