@@ -1,0 +1,21 @@
+{
+  "ID": 1,
+  "title": "the floating island",
+  "Description": "You arrive on a floating island. But as soon as you arrive you see some big spiders coming your way, what do you do?",
+  "Book": "modern adventures",
+  "choices": {
+    "0": {
+      "Name": "Use the spray",
+      "Page": 2,
+      "GiveItem": [],
+      "TakeItem": ["spray anti insects"]
+    },
+    "1": {
+      "Name": "Run",
+      "Page": 3,
+      "GiveItem": [],
+      "TakeItem": []
+    }
+  },
+  "end": false
+}

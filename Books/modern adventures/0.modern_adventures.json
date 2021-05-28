@@ -1,0 +1,15 @@
+{
+  "ID": 0,
+  "title": "modern adventures",
+  "Description": "Forget about the old boring adventures and discover new ones with this book full of surprises",
+  "Book": "modern adventures",
+  "choices": {
+    "0": {
+      "Name": "start adventure",
+      "Page": 1,
+      "GiveItem": ["spray anti insects", "trash can cover in metal", "Bones"],
+      "TakeItem": []
+    }
+  },
+  "end": false
+}

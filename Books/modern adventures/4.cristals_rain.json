@@ -1,0 +1,21 @@
+{
+  "ID": 4,
+  "title": "cristals rain",
+  "Description": "Nice thinking for the dogs, now you feel a little cristal on your head and realise that a lot of pointy cristals can kill you, what do you do to stop this catastophe?",
+  "Book": "modern adventures",
+  "choices": {
+    "0": {
+      "Name": "Trash can cover",
+      "Page": 6,
+      "GiveItem": [],
+      "TakeItem": ["trash can cover in metal"]
+    },
+    "1": {
+      "Name": "Run",
+      "Page": 3,
+      "GiveItem": [],
+      "TakeItem": []
+    }
+  },
+  "end": false
+}
