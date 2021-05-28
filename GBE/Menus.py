@@ -376,7 +376,7 @@ def menuCreateChoice(LoadedPage):
     Ba.emptyLine()
     NewChoice = {"Name": "Untitled", "Page": 0, "GiveItem": [], "TakeItem": []}
     NewChoice["Name"] = Ba.inputText("Name of the Choice", maxlenght=20)
-    RangePage = range(0, len(Load.listPages(LoadedPage["Book"])) - 1)
+    RangePage = range(0, len(Load.listPages(LoadedPage["Book"])[0]) - 1)
     NewChoice["Page"] = Ba.inputNumber(textBefore="Where does the choice leads to ? Enter the page number", rangeNumber=RangePage)
     LoadedPage = Modify.createChoice(LoadedPage, NewChoice)
     return LoadedPage
