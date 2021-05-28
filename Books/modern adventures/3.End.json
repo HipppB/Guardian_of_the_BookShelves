@@ -1,0 +1,8 @@
+{
+  "ID": 3,
+  "title": "End",
+  "Description": "I'm sorry you did a bad choice that leads here. Your adventure ends now. Thank you for joining us!",
+  "Book": "modern adventures",
+  "choices": {},
+  "end": true
+}

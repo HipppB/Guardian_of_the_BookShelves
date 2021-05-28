@@ -1,0 +1,26 @@
+{
+  "ID": 2,
+  "title": "the dogs",
+  "Description": "you got rid of the spiders. Great. Now three dogs stop you because they are guarding the entry what do you do to distract them?",
+  "Book": "modern adventures",
+  "choices": {
+    "0": {
+      "Name": "throw a bone",
+      "Page": 4,
+      "GiveItem": [],
+      "TakeItem": [
+        "Bones"
+      ]
+    },
+    "1": {
+      "Name": "try to talk to them",
+      "Page": 5,
+      "GiveItem": [
+        "I am a candle",
+        "an insect"
+      ],
+      "TakeItem": []
+    }
+  },
+  "end": false
+}

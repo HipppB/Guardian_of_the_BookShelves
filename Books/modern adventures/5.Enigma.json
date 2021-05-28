@@ -1,0 +1,25 @@
+{
+  "ID": 5,
+  "title": "Enigma",
+  "Description": "My life can be measured in hours, I serve by being devoured. Thin, I am quick. Fat, I am slow. Wind is my foe. What am I?",
+  "Book": "modern adventures",
+  "choices": {
+    "0": {
+      "Name": "candle",
+      "Page": 4,
+      "GiveItem": [],
+      "TakeItem": [
+        "I am a candle"
+      ]
+    },
+    "1": {
+      "Name": "insect",
+      "Page": 3,
+      "GiveItem": [],
+      "TakeItem": [
+        "an insect"
+      ]
+    }
+  },
+  "end": false
+}
