@@ -40,7 +40,7 @@ def listPages(book):
     return pageList
     # [["0.PageName1.json", "1.PageName2.json"]["PageName1", "PageName2"]]
 
-def loadPage(book, page):
+def loadPage(book, page): #page name of file in path 
     try:
         Page = json.load(open(os.path.join(get_project_root(), 'Books', book, page)))
         return Page
