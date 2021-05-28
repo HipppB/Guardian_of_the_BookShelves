@@ -45,13 +45,16 @@ def PageMenu(Page):
     Ba.emptyLine()
     Ba.line()
 
-    listChoicePage = [Page['choices'][str(i)]['Name'] for i in Page['choices']]
-    choice = Ba.Choice(listChoicePage)
-    Ba.line()
-    listPages = Load.listPages(Page['Book'])
-    newPageID = Page['choices'][str(choice)]['Page']
-    newPageName = str(listPages[0][newPageID])
-    newPage = Load.loadPage(Page['Book'], newPageName)
+    if len(Page['choices']) == 0:
+        return False
+    else:
 
-    PageMenu(newPage)
+        listChoicePage = [Page['choices'][str(i)]['Name'] for i in Page['choices']]
+        choice = Ba.Choice(listChoicePage)
+        Ba.line()
+        listPages = Load.listPages(Page['Book'])
+        newPageID = Page['choices'][str(choice)]['Page']
+        newPageName = str(listPages[0][newPageID])
+        newPage = Load.loadPage(Page['Book'], newPageName)
 
+        PageMenu(newPage)
