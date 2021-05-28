@@ -3,16 +3,9 @@ from GBE import Load
 from GBE import Menus as Me
 
 def mainMenu():
-    print(Ba.playerASCII)
-    Me.menuListBook(EditMode="Return")
-
-def BookMenu(LoadedBook):
-    Ba.clear()
-    Ba.line()
-    Ba.printTitle(LoadedBook["title"])
-    pass
     while True:
         Ba.clear()
+        print(Ba.playerASCII)
         Ba.line()
         Ba.printTitle("Please select a book to read", centered=True)
         Ba.emptyLine()
