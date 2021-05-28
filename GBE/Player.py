@@ -19,6 +19,6 @@ def mainMenu():
         Ba.printSentence("You choose the choice number " + str(NumChoice))
         Ba.line()
         if NumChoice == 0:
-            LoadedBook = {}
+            loadedBook = Load.loadBook(ListBooks[Ba.inputNumber(range(len(ListBooks)))])
         if NumChoice == 1:
             break
