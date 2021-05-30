@@ -74,5 +74,5 @@ def PageMenu(Page, inventory, Fail = None):
             inventory = ChangeInventory(Page['choices'][str(choice)], inventory=inventory)
             PageMenu(newPage, inventory=inventory)
         else:
-            errorMsg = "Unforunatly you need the item " + str(CheckItemChoice) + " to select this choice ! Please Select another option."
+            errorMsg = "Unfortunatly you need the item " + str(CheckItemChoice) + " to select this choice ! Please Select another option."
             PageMenu(Page, inventory=inventory, Fail = errorMsg)
