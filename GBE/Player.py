@@ -13,7 +13,7 @@ def mainMenu():
     LoadedPage = Load.loadPage(LoadedBook, ListPages[0][0])
     inventory = {}
     PageMenu(LoadedPage, inventory=inventory)
-    while Ba.inputText("Do you want to restart the book ?", FromList=["Yes", "yes", "no", "No"]).lower() == "yes":
+    while Ba.inputText("Do you want to restart the book ? [y/n]", FromList=["Y", "y", "N", "n"]).lower() == "y":
         inventory.clear()
         PageMenu(LoadedPage, inventory)
 
