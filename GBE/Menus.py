@@ -51,6 +51,8 @@ def menuListBook(EditMode = False):
     Ba.line()
     Ba.printTitle("List of all books :", True)
     Ba.emptyLine()
+    Ba.printSentence("Book written as \"Not finished\" may have inaccessible pages. ")
+    Ba.emptyLine()
     ListBooks = Load.listBook()
     if EditMode == "Return":
         ListTheBooks(ListBooks, Mode = "ID")

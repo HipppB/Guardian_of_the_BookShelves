@@ -9,13 +9,13 @@
     "0": {
       "Name": "Fight him with a wooden sword",
       "Page": 2,
-      "GiveItem": ["Shield"],
+      "GiveItem": [],
       "TakeItem": ["wooden sword"]
     },
     "1": {
       "Name": "Run away and protect yourself with the shield",
       "Page": 3,
-      "GiveItem": ["wooden sword"],
+      "GiveItem": [],
       "TakeItem": ["Shield"]
     }
   },

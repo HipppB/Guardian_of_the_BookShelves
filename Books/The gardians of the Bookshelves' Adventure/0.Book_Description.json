@@ -10,7 +10,7 @@
     "0": {
       "Name": "Start Your Adventure",
       "Page": 1,
-      "GiveItem": ["wooden sword", "Shield"],
+      "GiveItem": ["wooden sword", "shield"],
       "TakeItem": []
     }
   },

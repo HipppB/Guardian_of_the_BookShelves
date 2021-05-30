@@ -3,9 +3,7 @@ from GBE import Load
 from GBE import Menus as Me
 import time
 
-
 def mainMenu():
-    inventory = {}
     Ba.clear()
     print(Ba.playerASCII)
     print("Loading...")
@@ -13,16 +11,50 @@ def mainMenu():
     LoadedBook = Me.menuListBook(EditMode="Return")
     ListPages = Load.listPages(LoadedBook)
     LoadedPage = Load.loadPage(LoadedBook, ListPages[0][0])
-    print(LoadedPage)
-    PageMenu(LoadedPage)
+    inventory = {}
+    PageMenu(LoadedPage, inventory=inventory)
     while Ba.inputText("Do you want to restart the book ?", FromList=["Yes", "yes", "no", "No"]).lower() == "yes":
-        PageMenu(LoadedPage)
+        inventory.clear()
+        PageMenu(LoadedPage, inventory)
 
-def PageMenu(Page):
+def displayInv(inventory):
+    Ba.printSentence("Your Inventory : ")
+    for item in inventory:
+        Ba.printSentence(str(item) + " (*" +  str(inventory[item]) + ")", Alinea=True)
+    if len(inventory) == 0:
+        Ba.printSentence("Your inventory is empty.", Alinea=True)
+    return
+
+def ChangeInventory(Choice, inventory):
+    for item in Choice["GiveItem"]:
+        if item.lower() in inventory:
+            inventory[item.lower()] = inventory[item.lower()] + 1
+        else:
+            inventory[item.lower()] = 1
+    for item in Choice["TakeItem"]:
+        if item.lower() in inventory:
+            inventory[item.lower()] = inventory[item.lower()] - 1
+        if inventory[item.lower()] == 0:
+            del inventory[item.lower()]
+    return inventory
+
+def CheckIfItem(TakeItem, inventory):
+    for item in TakeItem:
+        if not item.lower() in inventory:
+            return item
+    return True
+def PageMenu(Page, inventory, Fail = None):
+    
     Ba.clear()
+    if Fail != None:
+        print(Fail)
     Ba.line()
-    Ba.printTitle(Page['Book'], centered=True)
-    Ba.printTitle(Page['title'], centered=True)
+    Ba.printTitle("Book : " + Page['Book'], centered=True)
+    Ba.line()
+    Ba.printTitle("Page : " + Page['title'], centered=True)
+    Ba.emptyLine()
+    Ba.emptyLine()
+    displayInv(inventory=inventory)
     Ba.emptyLine()
     Ba.printSentence((Page['Description']))
     Ba.emptyLine()
@@ -34,8 +66,13 @@ def PageMenu(Page):
         choice = Ba.Choice(listChoicePage)
         Ba.line()
         listPages = Load.listPages(Page['Book'])
-        newPageID = Page['choices'][str(choice)]['Page']
-        newPageName = str(listPages[0][newPageID])
-        newPage = Load.loadPage(Page['Book'], newPageName)
-
-        PageMenu(newPage)
+        CheckItemChoice = CheckIfItem(Page['choices'][str(choice)]['TakeItem'], inventory=inventory)
+        if CheckItemChoice == True:
+            newPageID = Page['choices'][str(choice)]['Page']
+            newPageName = str(listPages[0][newPageID])
+            newPage = Load.loadPage(Page['Book'], newPageName)
+            inventory = ChangeInventory(Page['choices'][str(choice)], inventory=inventory)
+            PageMenu(newPage, inventory=inventory)
+        else:
+            errorMsg = "Unforunatly you need the item " + str(CheckItemChoice) + " to select this choice ! Please Select another option."
+            PageMenu(Page, inventory=inventory, Fail = errorMsg)
