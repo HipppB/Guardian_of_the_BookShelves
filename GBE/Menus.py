@@ -1,7 +1,11 @@
 from . import Basics as Ba, Load, Modify, Save
+import time
 
 # Menu Principal
 def mainMenu():
+    print(Ba.editorASCII)
+    print("Loading...")
+    time.sleep(1)
     while True:
         Ba.clear()
         Ba.line()
@@ -137,11 +141,6 @@ def menuCreatePage(LoadedBook):
     Ba.line
     Save.savePage(LoadedPage)
     return LoadedPage
-
-def menuEditPage(LoadedPage):
-    Ba.clear()
-    Ba.line
-
 
 def menuEditBook(LoadedBook):
     while True:
@@ -444,9 +443,9 @@ def menuModifyChoice(loadedPage):
         if numChoice == 1:
             choiceData = menuChangeDirPage(choiceData, loadedPage)
         if numChoice == 2:
-            choiceData = menuChangeItem(choiceData, "Give")
+            choiceData = menuChangeItem(choiceData, "GiveItem")
         if numChoice == 3:
-            choiceData = menuChangeItem(choiceData,"Take")
+            choiceData = menuChangeItem(choiceData,"TakeItem")
         if numChoice == 4:
             break
         loadedPage["choices"][choiceToChange] = choiceData
@@ -461,5 +460,25 @@ def menuChangeDirPage(choiceData, loadedPage):
     return choiceData
 
 def menuChangeItem(choiceData, mode):
-    
+    while True:
+        Ba.clear()
+        Ba.line()
+        Ba.printTitle("edit " + mode, centered=True)
+        Ba.emptyLine()
+        Ba.printSentence(mode[0:4] + "s : ", Alinea=True)
+        if len(choiceData[mode]) != 0:
+            for Item in choiceData[mode]:
+                Ba.printSentence("- " + Item, Alinea=True)
+        else:
+            Ba.printSentence("Nothing", Alinea=True)
+        Ba.emptyLine()
+        Ba.line()
+        listChoices = ["Remove", "Add", "quit"]
+        numChoice = Ba.Choice(listChoices)
+        if numChoice == 0:
+            choiceData[mode].remove(Ba.inputText('Enter the name of the choice to DELETE from '+ mode[0:4].upper() + " : "))
+        if numChoice == 1:
+            choiceData[mode].append(Ba.inputText('Enter the name of the new item to ' + mode[0:4].upper() + " : "))
+        if numChoice == 2:
+            break
     return choiceData
