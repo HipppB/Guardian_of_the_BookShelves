@@ -362,7 +362,7 @@ def menuEditChoices(LoadedPage, Mode=None):
         elif NumChoice == 1:
             LoadedPage = menuDeleteChoice(LoadedPage)
         elif NumChoice == 2:
-            LoadedPage = Modify.modifyChoice(LoadedPage)
+            LoadedPage = menuModifyChoice(LoadedPage)
         elif NumChoice == 3:
             break
         #We rearrange all Choices ID not to skip any numbers due to modifications like deleting a choice
@@ -413,4 +413,53 @@ def menuDeleteChoice(LoadedPage):
         Modify.deleteChoice(LoadedPage, listchoices.index(ChoiceToDelete))
     return LoadedPage
 
-#def menuModifyChoice(PageData)
+def menuModifyChoice(loadedPage):
+    choiceToChange = Ba.inputText("Choice number to Edit :")
+    choiceData = loadedPage["choices"][choiceToChange]
+    while True:
+        Ba.clear()
+        Ba.line()
+        Ba.printTitle("You are viewing choice number :" + choiceToChange, centered=True)
+        Ba.emptyLine()
+        Ba.printSentence("Name : " + choiceData["Name"] + " -> Go to page " + str(choiceData["Page"]))
+        Ba.printSentence("Gives :", Alinea=True)
+        if len(choiceData["GiveItem"]) != 0:
+            for Item in choiceData["GiveItem"]:
+                Ba.printSentence("- " + Item, Alinea=True)
+        else:
+            Ba.printSentence("Nothing", Alinea=True)
+        Ba.printSentence("Takes  :", Alinea=True)
+        if len(choiceData["TakeItem"]) != 0:
+            for Item in choiceData["TakeItem"]:
+                Ba.printSentence("- " + Item, Alinea=True)
+        else:
+            Ba.printSentence("Nothing", Alinea=True)
+
+        Ba.emptyLine()
+        Ba.line()
+        listChoice =["Change Name", "Change direction Page", "Give Item", "Take Item", "Quit"]
+        numChoice = Ba.Choice(listChoice)
+        if numChoice == 0:
+            choiceData = menuChangeName(choiceData)
+        if numChoice == 1:
+            choiceData = menuChangeDirPage(choiceData, loadedPage)
+        if numChoice == 2:
+            choiceData = menuChangeItem(choiceData, "Give")
+        if numChoice == 3:
+            choiceData = menuChangeItem(choiceData,"Take")
+        if numChoice == 4:
+            break
+        loadedPage["choices"][choiceToChange] = choiceData
+    return loadedPage
+
+def menuChangeName(choiceData):
+    choiceData["Name"] = Ba.inputText("What will be the new name ? : ")
+    return choiceData
+
+def menuChangeDirPage(choiceData, loadedPage):
+    choiceData["Page"] = Ba.inputNumber(range(len(Load.listPages(loadedPage["Book"])[0])),"What page will this choice lead to ? : ")
+    return choiceData
+
+def menuChangeItem(choiceData, mode):
+    
+    return choiceData
