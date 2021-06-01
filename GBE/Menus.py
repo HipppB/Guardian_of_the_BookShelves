@@ -3,10 +3,12 @@ import time
 
 # Menu Principal
 def mainMenu():
+    Ba.clear()
     print(Ba.editorASCII)
     print("Loading...")
     time.sleep(1)
     while True:
+       
         Ba.clear()
         Ba.line()
         Ba.printTitle("Welcome in the book Editor !", centered = True)
@@ -414,41 +416,45 @@ def menuDeleteChoice(LoadedPage):
 
 def menuModifyChoice(loadedPage):
     choiceToChange = Ba.inputText("Choice number to Edit :")
-    choiceData = loadedPage["choices"][choiceToChange]
-    while True:
-        Ba.clear()
-        Ba.line()
-        Ba.printTitle("You are viewing choice number :" + choiceToChange, centered=True)
-        Ba.emptyLine()
-        Ba.printSentence("Name : " + choiceData["Name"] + " -> Go to page " + str(choiceData["Page"]))
-        Ba.printSentence("Gives :", Alinea=True)
-        if len(choiceData["GiveItem"]) != 0:
-            for Item in choiceData["GiveItem"]:
-                Ba.printSentence("- " + Item, Alinea=True)
-        else:
-            Ba.printSentence("Nothing", Alinea=True)
-        Ba.printSentence("Takes  :", Alinea=True)
-        if len(choiceData["TakeItem"]) != 0:
-            for Item in choiceData["TakeItem"]:
-                Ba.printSentence("- " + Item, Alinea=True)
-        else:
-            Ba.printSentence("Nothing", Alinea=True)
+    try:
+        choiceData = loadedPage["choices"][choiceToChange]
+        while True:
+            Ba.clear()
+            Ba.line()
+            Ba.printTitle("You are viewing choice number " + choiceToChange, centered=True)
+            Ba.emptyLine()
+            Ba.printSentence("Name : " + choiceData["Name"] + " -> Go to page " + str(choiceData["Page"]))
+            Ba.printSentence("Gives :", Alinea=True)
+            if len(choiceData["GiveItem"]) != 0:
+                for Item in choiceData["GiveItem"]:
+                    Ba.printSentence("- " + Item, Alinea=True)
+            else:
+                Ba.printSentence("Nothing", Alinea=True)
+            Ba.printSentence("Takes  :", Alinea=True)
+            if len(choiceData["TakeItem"]) != 0:
+                for Item in choiceData["TakeItem"]:
+                    Ba.printSentence("- " + Item, Alinea=True)
+            else:
+                Ba.printSentence("Nothing", Alinea=True)
 
-        Ba.emptyLine()
-        Ba.line()
-        listChoice =["Change Name", "Change direction Page", "Give Item", "Take Item", "Quit"]
-        numChoice = Ba.Choice(listChoice)
-        if numChoice == 0:
-            choiceData = menuChangeName(choiceData)
-        if numChoice == 1:
-            choiceData = menuChangeDirPage(choiceData, loadedPage)
-        if numChoice == 2:
-            choiceData = menuChangeItem(choiceData, "GiveItem")
-        if numChoice == 3:
-            choiceData = menuChangeItem(choiceData,"TakeItem")
-        if numChoice == 4:
-            break
-        loadedPage["choices"][choiceToChange] = choiceData
+            Ba.emptyLine()
+            Ba.line()
+            listChoice =["Change Name", "Change direction Page", "Give Item", "Take Item", "Quit"]
+            numChoice = Ba.Choice(listChoice)
+            if numChoice == 0:
+                choiceData = menuChangeName(choiceData)
+            if numChoice == 1:
+                choiceData = menuChangeDirPage(choiceData, loadedPage)
+            if numChoice == 2:
+                choiceData = menuChangeItem(choiceData, "GiveItem")
+            if numChoice == 3:
+                choiceData = menuChangeItem(choiceData,"TakeItem")
+            if numChoice == 4:
+                break
+            loadedPage["choices"][choiceToChange] = choiceData
+    except:
+        print("Invalid choice number. Passing.")
+        time.sleep(1)
     return loadedPage
 
 def menuChangeName(choiceData):
@@ -463,9 +469,9 @@ def menuChangeItem(choiceData, mode):
     while True:
         Ba.clear()
         Ba.line()
-        Ba.printTitle("edit " + mode, centered=True)
+        Ba.printTitle("Edit " + mode, centered=True)
         Ba.emptyLine()
-        Ba.printSentence(mode[0:4] + "s : ", Alinea=True)
+        Ba.printSentence(mode[0:4] + "s : ", Alinea=False)
         if len(choiceData[mode]) != 0:
             for Item in choiceData[mode]:
                 Ba.printSentence("- " + Item, Alinea=True)
@@ -476,7 +482,11 @@ def menuChangeItem(choiceData, mode):
         listChoices = ["Remove", "Add", "quit"]
         numChoice = Ba.Choice(listChoices)
         if numChoice == 0:
-            choiceData[mode].remove(Ba.inputText('Enter the name of the choice to DELETE from '+ mode[0:4].upper() + " : "))
+            try:
+                choiceData[mode].remove(Ba.inputText('Enter the name of the choice to DELETE from '+ mode[0:4].upper() + " : "))
+            except:
+                print("No item with this name, passing.")
+                time.sleep(1)
         if numChoice == 1:
             choiceData[mode].append(Ba.inputText('Enter the name of the new item to ' + mode[0:4].upper() + " : "))
         if numChoice == 2:

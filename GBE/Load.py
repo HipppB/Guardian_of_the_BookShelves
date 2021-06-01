@@ -87,15 +87,18 @@ def isBookFinished(Book):
     def analyseTravel(pageNum):
         if pageNum not in travelDone:
             travelDone[pageNum] = []
-        if len(links[pageNum]) != 0:
-            for pageNumDest in links[pageNum]:
-                # If we haven't made the test we do it
-                if not pageNumDest in travelDone[pageNum]:
-                    if travelDone[pageNum]:
-                        travelDone[pageNum].append(pageNumDest)
-                    else:
-                        travelDone[pageNum] = [pageNumDest]
-                    analyseTravel(pageNumDest)
+        try:
+            if len(links[pageNum]) != 0:
+                for pageNumDest in links[pageNum]:
+                    # If we haven't made the test we do it
+                    if not pageNumDest in travelDone[pageNum]:
+                        if travelDone[pageNum]:
+                            travelDone[pageNum].append(pageNumDest)
+                        else:
+                            travelDone[pageNum] = [pageNumDest]
+                        analyseTravel(pageNumDest)
+        except:
+            return False
         #if len(links[pageNum]) == 0:
             #print("There is an end in page", pageNum)
     

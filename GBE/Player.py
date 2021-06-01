@@ -12,10 +12,13 @@ def mainMenu():
     ListPages = Load.listPages(LoadedBook)
     LoadedPage = Load.loadPage(LoadedBook, ListPages[0][0])
     inventory = {}
-    PageMenu(LoadedPage, inventory=inventory)
-    while Ba.inputText("Do you want to restart the book ? [y/n]", FromList=["Y", "y", "N", "n"]).lower() == "y":
-        inventory.clear()
-        PageMenu(LoadedPage, inventory)
+    try:
+        PageMenu(LoadedPage, inventory=inventory)
+        while Ba.inputText("Do you want to restart the book ? [y/n]", FromList=["Y", "y", "N", "n"]).lower() == "y":
+            inventory.clear()
+            PageMenu(LoadedPage, inventory)
+    except:
+        print("Seems you tried to access a non existing page. This may appen if you play on a Non finished Book.")
 
 def displayInv(inventory):
     Ba.printSentence("Your Inventory : ")

@@ -8,9 +8,9 @@
   "choices": {
     "0": {
       "Name": "Fight him with a wooden sword",
-      "Page": 2,
+      "Page": 4,
       "GiveItem": [],
-      "TakeItem": ["wooden sword"]
+      "TakeItem": ["wooden sword", "Test2"]
     },
     "1": {
       "Name": "Run away and protect yourself with the shield",
